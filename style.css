@@ -74,15 +74,19 @@ button {
   position: absolute;
 
   left: 50%;
-  bottom: 14%;
+  bottom: 20%;
 
   transform: translateX(-50%);
 
   color: var(--accent);
 
-  font-size: clamp(14px, 3.8vw, 24px);
+  font-size: clamp(20px, 5vw, 34px);
 
-  letter-spacing: .06em;
+  font-weight: bold;
+
+  letter-spacing: .08em;
+
+  text-align: center;
 
   animation: blink 1s infinite steps(2);
 

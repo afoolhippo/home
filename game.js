@@ -23,7 +23,7 @@ const games = [
       "images/gameni-soul.png",
 
     url:
-      "#"
+      "https://afoolhippo.github.io/game3/"
   },
 
   {
@@ -36,7 +36,7 @@ const games = [
       "images/sokka.png",
 
     url:
-      "#"
+      "https://afoolhippo.github.io/game2/"
   }
 ];
 

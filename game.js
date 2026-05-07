@@ -1,21 +1,42 @@
 const games = [
+
   {
     title: "バカなカバの大冒険",
-    description: "なつかしくて、ふしぎなところ。",
-    image: "images/baka-kaba.png",
-    url: "https://afoolhippo.github.io/hippogame/"
+
+    description:
+      "なつかしくて、ふしぎなところ。",
+
+    image:
+      "images/baka-kaba.png",
+
+    url:
+      "https://afoolhippo.github.io/hippogame/"
   },
+
   {
     title: "がめ煮ソウル",
-    description: "具材をあつめて、うまみを高めろ。",
-    image: "images/gameni-soul.png",
-    url: "#"
+
+    description:
+      "具材をあつめて、うまみを高めろ。",
+
+    image:
+      "images/gameni-soul.png",
+
+    url:
+      "#"
   },
+
   {
     title: "そっか！",
-    description: "タイミングよく、みんなでそっか。",
-    image: "images/sokka.png",
-    url: "#"
+
+    description:
+      "タイミングよく、みんなでそっか。",
+
+    image:
+      "images/sokka.png",
+
+    url:
+      "#"
   }
 ];
 
@@ -24,8 +45,11 @@ let currentIndex = 0;
 const titleScreen =
   document.getElementById("titleScreen");
 
-const gameSelect =
-  document.getElementById("gameSelect");
+const selectScreen =
+  document.getElementById("selectScreen");
+
+const coverTrack =
+  document.getElementById("coverTrack");
 
 const prevButton =
   document.getElementById("prevButton");
@@ -36,58 +60,207 @@ const nextButton =
 const playButton =
   document.getElementById("playButton");
 
-const gameImage =
-  document.getElementById("gameImage");
-
 const gameTitle =
   document.getElementById("gameTitle");
 
 const gameDescription =
   document.getElementById("gameDescription");
 
-function updateGame() {
+/* SOUND */
+
+const enterSound =
+  new Audio("sounds/enter.mp3");
+
+const selectSound =
+  new Audio("sounds/select1.mp3");
+
+const decideSound =
+  new Audio("sounds/select2.mp3");
+
+function playSound(sound) {
+
+  sound.currentTime = 0;
+
+  sound.play().catch(() => {});
+}
+
+/* POSITION */
+
+function getRelativePosition(index) {
+
+  const total = games.length;
+
+  let diff = index - currentIndex;
+
+  if (diff > total / 2) {
+    diff -= total;
+  }
+
+  if (diff < -total / 2) {
+    diff += total;
+  }
+
+  return diff;
+}
+
+/* RENDER */
+
+function renderCovers() {
+
+  coverTrack.innerHTML = "";
+
+  games.forEach((game, index) => {
+
+    const diff =
+      getRelativePosition(index);
+
+    const cover =
+      document.createElement("button");
+
+    cover.classList.add("cover");
+
+    if (diff === 0) {
+
+      cover.classList.add("active");
+
+    } else if (diff === -1) {
+
+      cover.classList.add("left");
+
+    } else if (diff === 1) {
+
+      cover.classList.add("right");
+
+    } else if (diff === -2) {
+
+      cover.classList.add("far-left");
+
+    } else if (diff === 2) {
+
+      cover.classList.add("far-right");
+
+    } else {
+
+      cover.classList.add("hidden-cover");
+    }
+
+    cover.innerHTML =
+      `<img src="${game.image}" alt="${game.title}">`;
+
+    cover.addEventListener(
+      "click",
+      () => {
+
+        if (index === currentIndex) {
+
+          playSound(decideSound);
+
+          pulsePlayButton();
+
+        } else {
+
+          currentIndex = index;
+
+          playSound(selectSound);
+
+          updateScreen();
+        }
+      }
+    );
+
+    coverTrack.appendChild(cover);
+  });
+}
+
+/* INFO */
+
+function updateInfo() {
+
   const game = games[currentIndex];
 
-  gameImage.src = game.image;
-  gameImage.alt = game.title;
+  gameTitle.textContent =
+    game.title;
 
-  gameTitle.textContent = game.title;
   gameDescription.textContent =
     game.description;
 }
 
-function nextGame() {
-  currentIndex =
-    (currentIndex + 1) % games.length;
+function updateScreen() {
 
-  updateGame();
+  renderCovers();
+
+  updateInfo();
+}
+
+/* MOVE */
+
+function nextGame() {
+
+  currentIndex =
+    (currentIndex + 1)
+    % games.length;
+
+  playSound(selectSound);
+
+  updateScreen();
 }
 
 function prevGame() {
+
   currentIndex =
     (currentIndex - 1 + games.length)
     % games.length;
 
-  updateGame();
+  playSound(selectSound);
+
+  updateScreen();
 }
 
+/* START */
+
 function startPortal() {
+
+  playSound(enterSound);
+
   titleScreen.classList.add("hidden");
 
-  gameSelect.classList.remove("hidden");
+  selectScreen.classList.remove("hidden");
 
-  updateGame();
+  updateScreen();
+}
+
+/* PLAY */
+
+function pulsePlayButton() {
+
+  playButton.classList.remove("pulse");
+
+  void playButton.offsetWidth;
+
+  playButton.classList.add("pulse");
 }
 
 function playGame() {
+
   const game = games[currentIndex];
 
-  if (game.url && game.url !== "#") {
-    window.location.href = game.url;
+  playSound(decideSound);
+
+  if (
+    game.url &&
+    game.url !== "#"
+  ) {
+
+    setTimeout(() => {
+
+      window.location.href =
+        game.url;
+
+    }, 220);
   }
 }
 
-/* タイトル画面どこでもタップ */
+/* EVENT */
 
 titleScreen.addEventListener(
   "click",
@@ -109,7 +282,7 @@ playButton.addEventListener(
   playGame
 );
 
-/* キーボード */
+/* KEYBOARD */
 
 document.addEventListener(
   "keydown",
@@ -123,17 +296,24 @@ document.addEventListener(
         event.key === "Enter" ||
         event.key === " "
       ) {
+
         startPortal();
       }
 
       return;
     }
 
-    if (event.key === "ArrowRight") {
+    if (
+      event.key === "ArrowRight"
+    ) {
+
       nextGame();
     }
 
-    if (event.key === "ArrowLeft") {
+    if (
+      event.key === "ArrowLeft"
+    ) {
+
       prevGame();
     }
 
@@ -141,7 +321,46 @@ document.addEventListener(
       event.key === "Enter" ||
       event.key === " "
     ) {
+
       playGame();
+    }
+  }
+);
+
+/* SWIPE */
+
+let touchStartX = 0;
+
+selectScreen.addEventListener(
+  "touchstart",
+  (event) => {
+
+    touchStartX =
+      event.touches[0].clientX;
+  }
+);
+
+selectScreen.addEventListener(
+  "touchend",
+  (event) => {
+
+    const touchEndX =
+      event.changedTouches[0].clientX;
+
+    const diff =
+      touchEndX - touchStartX;
+
+    if (Math.abs(diff) < 40) {
+      return;
+    }
+
+    if (diff < 0) {
+
+      nextGame();
+
+    } else {
+
+      prevGame();
     }
   }
 );

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>カバゲーセン</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,64 +13,65 @@
 
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-  <!-- TITLE -->
+  <main id="app">
 
-  <section id="titleScreen" class="title-screen">
+    <!-- TITLE -->
 
-    <img
-      src="images/kabagesen.png"
-      alt="カバゲーセン"
-      class="title-image"
-    />
+    <section id="titleScreen" class="title-screen">
 
-    <div class="crt scan"></div>
-    <div class="crt noise"></div>
+      <img
+        src="images/kabagesen.png"
+        alt="カバゲーセン"
+        class="title-image"
+      >
 
-    <div class="tap-message">
-      PRESS START BUTTON
-    </div>
-
-  </section>
-
-  <!-- SELECT -->
-
-  <section id="gameSelect" class="game-select hidden">
-
-    <div class="crt scan"></div>
-    <div class="crt noise"></div>
-
-    <header class="select-header">
-      <h1>GAME SELECT</h1>
-    </header>
-
-    <div class="cartridge-area">
-
-      <button id="prevButton" class="arrow-button">
-        ◀
-      </button>
-
-      <div class="game-card">
-        <img id="gameImage" src="" alt="" />
+      <div class="tap-start">
+        PRESS START BUTTON
       </div>
 
-      <button id="nextButton" class="arrow-button">
-        ▶
-      </button>
-
-    </div>
-
-    <section class="game-info">
-      <h2 id="gameTitle"></h2>
-      <p id="gameDescription"></p>
     </section>
 
-    <button id="playButton" class="play-button">
-      ▶ PLAY
-    </button>
+    <!-- SELECT -->
 
-  </section>
+    <section id="selectScreen" class="select-screen hidden">
+
+      <header class="select-header">
+        <h1>GAME SELECT</h1>
+        <p>すきなゲームをえらんでください</p>
+      </header>
+
+      <div class="cover-flow">
+
+        <button id="prevButton" class="nav-button">
+          ◀
+        </button>
+
+        <div id="coverTrack" class="cover-track"></div>
+
+        <button id="nextButton" class="nav-button">
+          ▶
+        </button>
+
+      </div>
+
+      <section class="game-info">
+
+        <h2 id="gameTitle"></h2>
+
+        <p id="gameDescription"></p>
+
+      </section>
+
+      <button id="playButton" class="play-button">
+        ▶ PLAY
+      </button>
+
+    </section>
+
+  </main>
 
   <script src="game.js"></script>
 

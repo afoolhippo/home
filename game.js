@@ -27,7 +27,7 @@ const games = [
   },
 
   {
-    title: "そっか！",
+    title: "みんなでそっか！",
 
     description:
       "タイミングよく、みんなでそっか。",

@@ -37,7 +37,7 @@ const games = [
 
     url:
       "https://afoolhippo.github.io/game2/"
-  }
+  },
 {
   title: "ポキポキきゅうり",
 

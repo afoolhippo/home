@@ -4,56 +4,74 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>カバゲーセン</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main id="app">
-    <section id="titleScreen" class="title-screen">
-      <img src="images/kabagesen.png" alt="カバゲーセン" class="title-image" />
-      <div class="crt scan"></div>
-      <div class="crt noise"></div>
-      <button id="startButton" class="start-button">PRESS START BUTTON</button>
-    </section>
 
-    <section id="gameSelect" class="game-select hidden">
-      <div class="crt scan"></div>
-      <div class="crt noise"></div>
+  <!-- TITLE -->
 
-      <header class="select-header">
-        <p>KABAGESEN OS</p>
-        <h1>GAME SELECT</h1>
-      </header>
+  <section id="titleScreen" class="title-screen">
 
-      <div class="cartridge-area">
-        <button id="prevButton" class="arrow-button">◀</button>
+    <img
+      src="images/kabagesen.png"
+      alt="カバゲーセン"
+      class="title-image"
+    />
 
-        <div class="game-card">
-          <div class="game-label">KABA SOFT</div>
-          <img id="gameImage" src="" alt="" />
-          <div class="game-version">ver.1.0</div>
-        </div>
+    <div class="crt scan"></div>
+    <div class="crt noise"></div>
 
-        <button id="nextButton" class="arrow-button">▶</button>
+    <div class="tap-message">
+      PRESS START BUTTON
+    </div>
+
+  </section>
+
+  <!-- SELECT -->
+
+  <section id="gameSelect" class="game-select hidden">
+
+    <div class="crt scan"></div>
+    <div class="crt noise"></div>
+
+    <header class="select-header">
+      <h1>GAME SELECT</h1>
+    </header>
+
+    <div class="cartridge-area">
+
+      <button id="prevButton" class="arrow-button">
+        ◀
+      </button>
+
+      <div class="game-card">
+        <img id="gameImage" src="" alt="" />
       </div>
 
-      <section class="game-info">
-        <h2 id="gameTitle"></h2>
-        <p id="gameDescription"></p>
-      </section>
+      <button id="nextButton" class="arrow-button">
+        ▶
+      </button>
 
-      <button id="playButton" class="play-button">▶ PLAY</button>
+    </div>
 
-      <footer class="select-footer">
-        <span>A: 決定</span>
-        <span>B: 戻る</span>
-        <span>©1994 KABA SOFT</span>
-      </footer>
+    <section class="game-info">
+      <h2 id="gameTitle"></h2>
+      <p id="gameDescription"></p>
     </section>
-  </main>
+
+    <button id="playButton" class="play-button">
+      ▶ PLAY
+    </button>
+
+  </section>
 
   <script src="game.js"></script>
+
 </body>
 </html>

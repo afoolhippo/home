@@ -38,6 +38,18 @@ const games = [
     url:
       "https://afoolhippo.github.io/game2/"
   }
+{
+  title: "ポキポキきゅうり",
+
+  description:
+    "きゅうりをベストタイミングでポキッ！",
+
+  image:
+    "images/pokipoki.png",
+
+  url:
+    "https://afoolhippo.github.io/game4/"
+},
 ];
 
 let currentIndex = 0;

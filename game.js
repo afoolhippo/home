@@ -6,17 +6,18 @@ const games = [
     url: "https://afoolhippo.github.io/hippogame/"
   },
   {
-    title: "がめ煮ソウル",
-    description: "具材をあつめて、うまみを高めろ。",
-    image: "images/gameni-soul.png",
-    url: "https://afoolhippo.github.io/game3/"
-  },
-  {
     title: "みんなでそっか！",
     description: "タイミングよく、みんなでそっか。",
     image: "images/sokka.png",
     url: "https://afoolhippo.github.io/game2/"
   },
+  {
+    title: "がめ煮ソウル",
+    description: "具材をあつめて、うまみを高めろ。",
+    image: "images/gameni-soul.png",
+    url: "https://afoolhippo.github.io/game3/"
+  },
+
   {
     title: "ポキポキきゅうり",
     description: "きゅうりをベストタイミングでポキッ！",
@@ -28,6 +29,12 @@ const games = [
     description: "タケノコが成長する前に収穫しよう！",
     image: "images/bamboo.png",
     url: "https://afoolhippo.github.io/game5/"
+  },
+  {
+    title: "FISHING BOY",
+    description: "釣れるは大魚か空き缶か！？",
+    image: "images/fish.png",
+    url: "https://afoolhippo.github.io/game7/"
   },
 {
   title: "二日酔いロード",

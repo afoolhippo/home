@@ -22,6 +22,11 @@ const games = [
     description: "きゅうりをベストタイミングでポキッ！",
     image: "images/pokipoki.png",
     url: "https://afoolhippo.github.io/game4/"
+  },
+    title: "BABY BABY BAMBOO",
+    description: "タケノコが成長する前に収穫しよう！",
+    image: "images/bamboo.png",
+    url: "https://afoolhippo.github.io/game5/"
   }
 ];
 

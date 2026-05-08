@@ -36,43 +36,21 @@ let dragLastX = 0;
 let dragLastTime = 0;
 let dragMoved = false;
 
-const titleScreen =
-  document.getElementById("titleScreen");
-
-const selectScreen =
-  document.getElementById("selectScreen");
-
-const coverTrack =
-  document.getElementById("coverTrack");
-
-const prevButton =
-  document.getElementById("prevButton");
-
-const nextButton =
-  document.getElementById("nextButton");
-
-const playButton =
-  document.getElementById("playButton");
-
-const gameTitle =
-  document.getElementById("gameTitle");
-
-const gameDescription =
-  document.getElementById("gameDescription");
-
-const positionDots =
-  document.getElementById("positionDots");
+const titleScreen = document.getElementById("titleScreen");
+const selectScreen = document.getElementById("selectScreen");
+const coverTrack = document.getElementById("coverTrack");
+const prevButton = document.getElementById("prevButton");
+const nextButton = document.getElementById("nextButton");
+const playButton = document.getElementById("playButton");
+const gameTitle = document.getElementById("gameTitle");
+const gameDescription = document.getElementById("gameDescription");
+const positionDots = document.getElementById("positionDots");
 
 /* SOUND */
 
-const enterSound =
-  new Audio("sounds/enter.mp3");
-
-const selectSound =
-  new Audio("sounds/select1.mp3");
-
-const decideSound =
-  new Audio("sounds/select2.mp3");
+const enterSound = new Audio("sounds/enter.mp3");
+const selectSound = new Audio("sounds/select1.mp3");
+const decideSound = new Audio("sounds/select2.mp3");
 
 function playSound(sound) {
   sound.currentTime = 0;
@@ -83,7 +61,6 @@ function playSound(sound) {
 
 function wrapIndex(value) {
   const total = games.length;
-
   return ((value % total) + total) % total;
 }
 
@@ -93,8 +70,9 @@ function nearestIndex(value) {
 
 function getShortestDiff(index, base) {
   const total = games.length;
+  const wrappedBase = wrapIndex(base);
 
-  let diff = index - base;
+  let diff = index - wrappedBase;
 
   if (diff > total / 2) {
     diff -= total;
@@ -108,15 +86,13 @@ function getShortestDiff(index, base) {
 }
 
 function setCurrentIndex(index, withSound = false) {
-  const next =
-    wrapIndex(index);
+  const next = wrapIndex(index);
 
   if (next === currentIndex) {
     return;
   }
 
   currentIndex = next;
-
   updateInfo();
   updateDots();
 
@@ -131,11 +107,9 @@ function createCovers() {
   coverTrack.innerHTML = "";
 
   games.forEach((game, index) => {
-    const cover =
-      document.createElement("button");
+    const cover = document.createElement("button");
 
     cover.classList.add("cover");
-
     cover.dataset.index = index;
 
     cover.innerHTML =
@@ -160,18 +134,12 @@ function createCovers() {
 }
 
 function renderCovers() {
-  const covers =
-    document.querySelectorAll(".cover");
+  const covers = document.querySelectorAll(".cover");
 
   covers.forEach((cover) => {
-    const index =
-      Number(cover.dataset.index);
-
-    const diff =
-      getShortestDiff(index, virtualIndex);
-
-    const absDiff =
-      Math.abs(diff);
+    const index = Number(cover.dataset.index);
+    const diff = getShortestDiff(index, virtualIndex);
+    const absDiff = Math.abs(diff);
 
     if (absDiff > 2.6) {
       cover.style.opacity = "0";
@@ -180,20 +148,13 @@ function renderCovers() {
       return;
     }
 
-    const x =
-      diff * 52;
-
-    const scale =
-      Math.max(0.46, 1 - absDiff * 0.28);
-
-    const opacity =
-      Math.max(0.16, 1 - absDiff * 0.42);
-
-    const z =
-      Math.round(100 - absDiff * 20);
+    const x = diff * 52;
+    const scale = Math.max(0.46, 1 - absDiff * 0.28);
+    const opacity = Math.max(0.16, 1 - absDiff * 0.42);
+    const z = Math.round(100 - absDiff * 20);
 
     cover.style.opacity = opacity;
-    cover.style.pointerEvents = absDiff < 0.55 ? "auto" : "auto";
+    cover.style.pointerEvents = "auto";
     cover.style.zIndex = z;
     cover.style.transform =
       `translateX(${x}%) scale(${scale})`;
@@ -204,8 +165,7 @@ function renderDots() {
   positionDots.innerHTML = "";
 
   games.forEach((_, index) => {
-    const dot =
-      document.createElement("button");
+    const dot = document.createElement("button");
 
     dot.classList.add("position-dot");
 
@@ -213,10 +173,7 @@ function renderDots() {
       dot.classList.add("active");
     }
 
-    dot.setAttribute(
-      "aria-label",
-      `${index + 1}番目のゲームを選択`
-    );
+    dot.setAttribute("aria-label", `${index + 1}番目のゲームを選択`);
 
     dot.addEventListener("click", () => {
       moveToIndex(index);
@@ -231,22 +188,15 @@ function renderDots() {
 function updateInfo() {
   const game = games[currentIndex];
 
-  gameTitle.textContent =
-    game.title;
-
-  gameDescription.textContent =
-    game.description;
+  gameTitle.textContent = game.title;
+  gameDescription.textContent = game.description;
 }
 
 function updateDots() {
-  const dots =
-    document.querySelectorAll(".position-dot");
+  const dots = document.querySelectorAll(".position-dot");
 
   dots.forEach((dot, index) => {
-    dot.classList.toggle(
-      "active",
-      index === currentIndex
-    );
+    dot.classList.toggle("active", index === currentIndex);
   });
 }
 
@@ -266,87 +216,62 @@ function stopAnimation() {
 }
 
 function animateInertia() {
-  virtualIndex += velocity;
+  virtualIndex = wrapIndex(virtualIndex + velocity);
 
   velocity *= 0.93;
 
-  const snapTarget =
-    Math.round(virtualIndex);
-
-  const snapDiff =
-    snapTarget - virtualIndex;
+  const snapTarget = Math.round(virtualIndex);
+  const snapDiff = snapTarget - virtualIndex;
 
   if (Math.abs(velocity) < 0.015) {
-    virtualIndex += snapDiff * 0.18;
+    virtualIndex = wrapIndex(virtualIndex + snapDiff * 0.18);
   }
 
-  setCurrentIndex(
-    nearestIndex(virtualIndex),
-    false
-  );
-
+  setCurrentIndex(nearestIndex(virtualIndex), false);
   renderCovers();
 
   if (
     Math.abs(velocity) < 0.002 &&
     Math.abs(snapDiff) < 0.004
   ) {
-    virtualIndex = snapTarget;
+    virtualIndex = wrapIndex(snapTarget);
     velocity = 0;
 
-    setCurrentIndex(
-      nearestIndex(virtualIndex),
-      true
-    );
-
+    setCurrentIndex(nearestIndex(virtualIndex), true);
     renderCovers();
+
     animationId = null;
     return;
   }
 
-  animationId =
-    requestAnimationFrame(animateInertia);
+  animationId = requestAnimationFrame(animateInertia);
 }
 
 function startInertia(startVelocity) {
   stopAnimation();
 
-  velocity = Math.max(
-    -0.32,
-    Math.min(0.32, startVelocity)
-  );
-
-  animationId =
-    requestAnimationFrame(animateInertia);
+  velocity = Math.max(-0.32, Math.min(0.32, startVelocity));
+  animationId = requestAnimationFrame(animateInertia);
 }
 
 function animateToIndex(targetIndex) {
   stopAnimation();
 
-  const total = games.length;
-
-  const diff =
-    getShortestDiff(targetIndex, virtualIndex);
-
-  const target =
-    virtualIndex + diff;
+  const target = wrapIndex(targetIndex);
+  const diff = getShortestDiff(target, virtualIndex);
+  const absoluteTarget = virtualIndex + diff;
 
   function step() {
-    const distance =
-      target - virtualIndex;
+    const distance = absoluteTarget - virtualIndex;
 
-    virtualIndex += distance * 0.22;
+    virtualIndex = wrapIndex(virtualIndex + distance * 0.22);
 
-    setCurrentIndex(
-      nearestIndex(virtualIndex),
-      false
-    );
-
+    setCurrentIndex(nearestIndex(virtualIndex), false);
     renderCovers();
 
     if (Math.abs(distance) < 0.004) {
       virtualIndex = target;
-      currentIndex = wrapIndex(targetIndex);
+      currentIndex = target;
 
       updateInfo();
       updateDots();
@@ -357,12 +282,10 @@ function animateToIndex(targetIndex) {
       return;
     }
 
-    animationId =
-      requestAnimationFrame(step);
+    animationId = requestAnimationFrame(step);
   }
 
-  animationId =
-    requestAnimationFrame(step);
+  animationId = requestAnimationFrame(step);
 }
 
 /* MOVE */
@@ -376,10 +299,7 @@ function prevGame() {
 }
 
 function moveToIndex(index) {
-  const target =
-    wrapIndex(index);
-
-  animateToIndex(target);
+  animateToIndex(wrapIndex(index));
 }
 
 /* START */
@@ -397,9 +317,7 @@ function startPortal() {
 
 function pulsePlayButton() {
   playButton.classList.remove("pulse");
-
   void playButton.offsetWidth;
-
   playButton.classList.add("pulse");
 }
 
@@ -433,41 +351,26 @@ function dragMove(clientX) {
     return;
   }
 
-  const now =
-    performance.now();
-
-  const dx =
-    clientX - dragLastX;
-
-  const totalDx =
-    clientX - dragStartX;
+  const now = performance.now();
+  const dx = clientX - dragLastX;
+  const totalDx = clientX - dragStartX;
 
   if (Math.abs(totalDx) > 8) {
     dragMoved = true;
   }
 
-  const trackWidth =
-    Math.max(coverTrack.offsetWidth, 1);
+  const trackWidth = Math.max(coverTrack.offsetWidth, 1);
+  const indexDelta = -dx / (trackWidth * 0.36);
 
-  const indexDelta =
-    -dx / (trackWidth * 0.36);
+  virtualIndex = wrapIndex(virtualIndex + indexDelta);
 
-  virtualIndex += indexDelta;
-
-  const dt =
-    Math.max(now - dragLastTime, 16);
-
-  velocity =
-    indexDelta * (16 / dt);
+  const dt = Math.max(now - dragLastTime, 16);
+  velocity = indexDelta * (16 / dt);
 
   dragLastX = clientX;
   dragLastTime = now;
 
-  setCurrentIndex(
-    nearestIndex(virtualIndex),
-    false
-  );
-
+  setCurrentIndex(nearestIndex(virtualIndex), false);
   renderCovers();
 }
 
@@ -508,34 +411,16 @@ coverTrack.addEventListener("pointercancel", () => {
 
 /* EVENT */
 
-titleScreen.addEventListener(
-  "click",
-  startPortal
-);
-
-prevButton.addEventListener(
-  "click",
-  prevGame
-);
-
-nextButton.addEventListener(
-  "click",
-  nextGame
-);
-
-playButton.addEventListener(
-  "click",
-  playGame
-);
+titleScreen.addEventListener("click", startPortal);
+prevButton.addEventListener("click", prevGame);
+nextButton.addEventListener("click", nextGame);
+playButton.addEventListener("click", playGame);
 
 /* KEYBOARD */
 
 document.addEventListener("keydown", (event) => {
   if (!titleScreen.classList.contains("hidden")) {
-    if (
-      event.key === "Enter" ||
-      event.key === " "
-    ) {
+    if (event.key === "Enter" || event.key === " ") {
       startPortal();
     }
 
@@ -550,10 +435,7 @@ document.addEventListener("keydown", (event) => {
     prevGame();
   }
 
-  if (
-    event.key === "Enter" ||
-    event.key === " "
-  ) {
+  if (event.key === "Enter" || event.key === " ") {
     playGame();
   }
 });

@@ -28,7 +28,13 @@ const games = [
     description: "タケノコが成長する前に収穫しよう！",
     image: "images/bamboo.png",
     url: "https://afoolhippo.github.io/game5/"
-  }
+  },
+{
+  title: "二日酔いロード",
+  description: "ふらつきながら、夜のまちを歩け。",
+  image: "images/futsukayoi-road.png",
+  url: "https://afoolhippo.github.io/game6/"
+}
 ];
 
 let currentIndex = 0;

@@ -18,7 +18,6 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: "DotGothic16", monospace;
-  touch-action: none;
 }
 
 button {
@@ -96,9 +95,13 @@ button {
 /* COVER FLOW */
 
 .cover-flow {
+  display: grid;
+  grid-template-columns: 48px 1fr 48px;
+  align-items: center;
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
+  gap: 4px;
 }
 
 .cover-track {
@@ -108,20 +111,12 @@ button {
   justify-content: center;
   align-items: center;
   overflow: visible;
-  perspective: 900px;
   cursor: grab;
+  touch-action: pan-y;
 }
 
 .cover-track:active {
   cursor: grabbing;
-}
-
-.cover-track.spin-left .cover.active {
-  animation: spinLeft .18s steps(3);
-}
-
-.cover-track.spin-right .cover.active {
-  animation: spinRight .18s steps(3);
 }
 
 .cover {
@@ -132,9 +127,9 @@ button {
   background: var(--panel);
   padding: 6px;
   cursor: pointer;
-  transition:
-    transform .14s steps(2),
-    opacity .14s steps(2);
+  opacity: 0;
+  transform: translateX(0) scale(.4);
+  will-change: transform, opacity;
 }
 
 .cover img {
@@ -147,41 +142,20 @@ button {
   pointer-events: none;
 }
 
-/* COVER POSITION */
+/* NAV */
 
-.cover.active {
-  z-index: 5;
-  opacity: 1;
-  transform: translateX(0) scale(1) rotateZ(0deg);
+.nav-button {
+  width: 44px;
+  height: 64px;
+  border: 3px solid var(--border);
+  background: var(--panel);
+  color: var(--accent);
+  font-size: 24px;
+  cursor: pointer;
 }
 
-.cover.left {
-  z-index: 3;
-  opacity: .5;
-  transform: translateX(-52%) scale(.72) rotateZ(-4deg);
-}
-
-.cover.right {
-  z-index: 3;
-  opacity: .5;
-  transform: translateX(52%) scale(.72) rotateZ(4deg);
-}
-
-.cover.far-left {
-  z-index: 1;
-  opacity: .18;
-  transform: translateX(-90%) scale(.48) rotateZ(-7deg);
-}
-
-.cover.far-right {
-  z-index: 1;
-  opacity: .18;
-  transform: translateX(90%) scale(.48) rotateZ(7deg);
-}
-
-.cover.hidden-cover {
-  opacity: 0;
-  pointer-events: none;
+.nav-button:active {
+  transform: translateY(2px);
 }
 
 /* POSITION DOTS */
@@ -264,34 +238,6 @@ button {
 @keyframes pulseButton {
   50% {
     transform: scale(1.08);
-  }
-}
-
-@keyframes spinLeft {
-  0% {
-    transform: translateX(0) scale(1) rotateY(0deg);
-  }
-
-  50% {
-    transform: translateX(-8%) scale(.92) rotateY(-55deg);
-  }
-
-  100% {
-    transform: translateX(0) scale(1) rotateY(0deg);
-  }
-}
-
-@keyframes spinRight {
-  0% {
-    transform: translateX(0) scale(1) rotateY(0deg);
-  }
-
-  50% {
-    transform: translateX(8%) scale(.92) rotateY(55deg);
-  }
-
-  100% {
-    transform: translateX(0) scale(1) rotateY(0deg);
   }
 }
 

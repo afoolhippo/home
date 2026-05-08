@@ -26,9 +26,15 @@ const games = [
 ];
 
 let currentIndex = 0;
-let touchStartX = 0;
-let touchStartY = 0;
-let isTouchMoving = false;
+let virtualIndex = 0;
+let velocity = 0;
+let animationId = null;
+
+let isDragging = false;
+let dragStartX = 0;
+let dragLastX = 0;
+let dragLastTime = 0;
+let dragMoved = false;
 
 const titleScreen =
   document.getElementById("titleScreen");
@@ -38,6 +44,12 @@ const selectScreen =
 
 const coverTrack =
   document.getElementById("coverTrack");
+
+const prevButton =
+  document.getElementById("prevButton");
+
+const nextButton =
+  document.getElementById("nextButton");
 
 const playButton =
   document.getElementById("playButton");
@@ -67,12 +79,22 @@ function playSound(sound) {
   sound.play().catch(() => {});
 }
 
-/* POSITION */
+/* UTILITY */
 
-function getRelativePosition(index) {
+function wrapIndex(value) {
   const total = games.length;
 
-  let diff = index - currentIndex;
+  return ((value % total) + total) % total;
+}
+
+function nearestIndex(value) {
+  return wrapIndex(Math.round(value));
+}
+
+function getShortestDiff(index, base) {
+  const total = games.length;
+
+  let diff = index - base;
 
   if (diff > total / 2) {
     diff -= total;
@@ -85,38 +107,45 @@ function getRelativePosition(index) {
   return diff;
 }
 
+function setCurrentIndex(index, withSound = false) {
+  const next =
+    wrapIndex(index);
+
+  if (next === currentIndex) {
+    return;
+  }
+
+  currentIndex = next;
+
+  updateInfo();
+  updateDots();
+
+  if (withSound) {
+    playSound(selectSound);
+  }
+}
+
 /* RENDER */
 
-function renderCovers() {
+function createCovers() {
   coverTrack.innerHTML = "";
 
   games.forEach((game, index) => {
-    const diff =
-      getRelativePosition(index);
-
     const cover =
       document.createElement("button");
 
     cover.classList.add("cover");
 
-    if (diff === 0) {
-      cover.classList.add("active");
-    } else if (diff === -1) {
-      cover.classList.add("left");
-    } else if (diff === 1) {
-      cover.classList.add("right");
-    } else if (diff === -2) {
-      cover.classList.add("far-left");
-    } else if (diff === 2) {
-      cover.classList.add("far-right");
-    } else {
-      cover.classList.add("hidden-cover");
-    }
+    cover.dataset.index = index;
 
     cover.innerHTML =
       `<img src="${game.image}" alt="${game.title}">`;
 
     cover.addEventListener("click", () => {
+      if (dragMoved) {
+        return;
+      }
+
       if (index === currentIndex) {
         playSound(decideSound);
         pulsePlayButton();
@@ -127,6 +156,47 @@ function renderCovers() {
     });
 
     coverTrack.appendChild(cover);
+  });
+}
+
+function renderCovers() {
+  const covers =
+    document.querySelectorAll(".cover");
+
+  covers.forEach((cover) => {
+    const index =
+      Number(cover.dataset.index);
+
+    const diff =
+      getShortestDiff(index, virtualIndex);
+
+    const absDiff =
+      Math.abs(diff);
+
+    if (absDiff > 2.6) {
+      cover.style.opacity = "0";
+      cover.style.pointerEvents = "none";
+      cover.style.zIndex = "0";
+      return;
+    }
+
+    const x =
+      diff * 52;
+
+    const scale =
+      Math.max(0.46, 1 - absDiff * 0.28);
+
+    const opacity =
+      Math.max(0.16, 1 - absDiff * 0.42);
+
+    const z =
+      Math.round(100 - absDiff * 20);
+
+    cover.style.opacity = opacity;
+    cover.style.pointerEvents = absDiff < 0.55 ? "auto" : "auto";
+    cover.style.zIndex = z;
+    cover.style.transform =
+      `translateX(${x}%) scale(${scale})`;
   });
 }
 
@@ -149,10 +219,6 @@ function renderDots() {
     );
 
     dot.addEventListener("click", () => {
-      if (index === currentIndex) {
-        return;
-      }
-
       moveToIndex(index);
     });
 
@@ -172,75 +238,148 @@ function updateInfo() {
     game.description;
 }
 
+function updateDots() {
+  const dots =
+    document.querySelectorAll(".position-dot");
+
+  dots.forEach((dot, index) => {
+    dot.classList.toggle(
+      "active",
+      index === currentIndex
+    );
+  });
+}
+
 function updateScreen() {
   renderCovers();
-  renderDots();
   updateInfo();
+  renderDots();
+}
+
+/* ANIMATION */
+
+function stopAnimation() {
+  if (animationId) {
+    cancelAnimationFrame(animationId);
+    animationId = null;
+  }
+}
+
+function animateInertia() {
+  virtualIndex += velocity;
+
+  velocity *= 0.93;
+
+  const snapTarget =
+    Math.round(virtualIndex);
+
+  const snapDiff =
+    snapTarget - virtualIndex;
+
+  if (Math.abs(velocity) < 0.015) {
+    virtualIndex += snapDiff * 0.18;
+  }
+
+  setCurrentIndex(
+    nearestIndex(virtualIndex),
+    false
+  );
+
+  renderCovers();
+
+  if (
+    Math.abs(velocity) < 0.002 &&
+    Math.abs(snapDiff) < 0.004
+  ) {
+    virtualIndex = snapTarget;
+    velocity = 0;
+
+    setCurrentIndex(
+      nearestIndex(virtualIndex),
+      true
+    );
+
+    renderCovers();
+    animationId = null;
+    return;
+  }
+
+  animationId =
+    requestAnimationFrame(animateInertia);
+}
+
+function startInertia(startVelocity) {
+  stopAnimation();
+
+  velocity = Math.max(
+    -0.32,
+    Math.min(0.32, startVelocity)
+  );
+
+  animationId =
+    requestAnimationFrame(animateInertia);
+}
+
+function animateToIndex(targetIndex) {
+  stopAnimation();
+
+  const total = games.length;
+
+  const diff =
+    getShortestDiff(targetIndex, virtualIndex);
+
+  const target =
+    virtualIndex + diff;
+
+  function step() {
+    const distance =
+      target - virtualIndex;
+
+    virtualIndex += distance * 0.22;
+
+    setCurrentIndex(
+      nearestIndex(virtualIndex),
+      false
+    );
+
+    renderCovers();
+
+    if (Math.abs(distance) < 0.004) {
+      virtualIndex = target;
+      currentIndex = wrapIndex(targetIndex);
+
+      updateInfo();
+      updateDots();
+      renderCovers();
+
+      animationId = null;
+      playSound(selectSound);
+      return;
+    }
+
+    animationId =
+      requestAnimationFrame(step);
+  }
+
+  animationId =
+    requestAnimationFrame(step);
 }
 
 /* MOVE */
 
-function spin(direction) {
-  coverTrack.classList.remove(
-    "spin-left",
-    "spin-right"
-  );
-
-  void coverTrack.offsetWidth;
-
-  if (direction === "left") {
-    coverTrack.classList.add("spin-left");
-  }
-
-  if (direction === "right") {
-    coverTrack.classList.add("spin-right");
-  }
-
-  setTimeout(() => {
-    coverTrack.classList.remove(
-      "spin-left",
-      "spin-right"
-    );
-  }, 220);
-}
-
 function nextGame() {
-  currentIndex =
-    (currentIndex + 1) % games.length;
-
-  playSound(selectSound);
-  spin("right");
-  updateScreen();
+  moveToIndex(currentIndex + 1);
 }
 
 function prevGame() {
-  currentIndex =
-    (currentIndex - 1 + games.length) % games.length;
-
-  playSound(selectSound);
-  spin("left");
-  updateScreen();
+  moveToIndex(currentIndex - 1);
 }
 
 function moveToIndex(index) {
-  const total = games.length;
-  const forward =
-    (index - currentIndex + total) % total;
+  const target =
+    wrapIndex(index);
 
-  const backward =
-    (currentIndex - index + total) % total;
-
-  currentIndex = index;
-
-  playSound(selectSound);
-
-  if (forward <= backward) {
-    spin("right");
-  } else {
-    spin("left");
-  }
-
-  updateScreen();
+  animateToIndex(target);
 }
 
 /* START */
@@ -276,11 +415,112 @@ function playGame() {
   }
 }
 
+/* POINTER DRAG */
+
+function dragStart(clientX) {
+  stopAnimation();
+
+  isDragging = true;
+  dragMoved = false;
+  dragStartX = clientX;
+  dragLastX = clientX;
+  dragLastTime = performance.now();
+  velocity = 0;
+}
+
+function dragMove(clientX) {
+  if (!isDragging) {
+    return;
+  }
+
+  const now =
+    performance.now();
+
+  const dx =
+    clientX - dragLastX;
+
+  const totalDx =
+    clientX - dragStartX;
+
+  if (Math.abs(totalDx) > 8) {
+    dragMoved = true;
+  }
+
+  const trackWidth =
+    Math.max(coverTrack.offsetWidth, 1);
+
+  const indexDelta =
+    -dx / (trackWidth * 0.36);
+
+  virtualIndex += indexDelta;
+
+  const dt =
+    Math.max(now - dragLastTime, 16);
+
+  velocity =
+    indexDelta * (16 / dt);
+
+  dragLastX = clientX;
+  dragLastTime = now;
+
+  setCurrentIndex(
+    nearestIndex(virtualIndex),
+    false
+  );
+
+  renderCovers();
+}
+
+function dragEnd() {
+  if (!isDragging) {
+    return;
+  }
+
+  isDragging = false;
+
+  if (!dragMoved) {
+    return;
+  }
+
+  startInertia(velocity * 1.8);
+
+  setTimeout(() => {
+    dragMoved = false;
+  }, 120);
+}
+
+coverTrack.addEventListener("pointerdown", (event) => {
+  coverTrack.setPointerCapture(event.pointerId);
+  dragStart(event.clientX);
+});
+
+coverTrack.addEventListener("pointermove", (event) => {
+  dragMove(event.clientX);
+});
+
+coverTrack.addEventListener("pointerup", () => {
+  dragEnd();
+});
+
+coverTrack.addEventListener("pointercancel", () => {
+  dragEnd();
+});
+
 /* EVENT */
 
 titleScreen.addEventListener(
   "click",
   startPortal
+);
+
+prevButton.addEventListener(
+  "click",
+  prevGame
+);
+
+nextButton.addEventListener(
+  "click",
+  nextGame
 );
 
 playButton.addEventListener(
@@ -318,91 +558,7 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-/* SWIPE */
+/* INIT */
 
-selectScreen.addEventListener("touchstart", (event) => {
-  touchStartX =
-    event.touches[0].clientX;
-
-  touchStartY =
-    event.touches[0].clientY;
-
-  isTouchMoving = true;
-});
-
-selectScreen.addEventListener("touchmove", (event) => {
-  if (!isTouchMoving) {
-    return;
-  }
-
-  const touchX =
-    event.touches[0].clientX;
-
-  const touchY =
-    event.touches[0].clientY;
-
-  const diffX =
-    touchX - touchStartX;
-
-  const diffY =
-    touchY - touchStartY;
-
-  if (Math.abs(diffX) > Math.abs(diffY)) {
-    event.preventDefault();
-  }
-}, { passive: false });
-
-selectScreen.addEventListener("touchend", (event) => {
-  if (!isTouchMoving) {
-    return;
-  }
-
-  isTouchMoving = false;
-
-  const touchEndX =
-    event.changedTouches[0].clientX;
-
-  const diff =
-    touchEndX - touchStartX;
-
-  if (Math.abs(diff) < 42) {
-    return;
-  }
-
-  if (diff < 0) {
-    nextGame();
-  } else {
-    prevGame();
-  }
-});
-
-/* MOUSE DRAG */
-
-let mouseStartX = 0;
-let isMouseDragging = false;
-
-coverTrack.addEventListener("mousedown", (event) => {
-  mouseStartX = event.clientX;
-  isMouseDragging = true;
-});
-
-document.addEventListener("mouseup", (event) => {
-  if (!isMouseDragging) {
-    return;
-  }
-
-  isMouseDragging = false;
-
-  const diff =
-    event.clientX - mouseStartX;
-
-  if (Math.abs(diff) < 50) {
-    return;
-  }
-
-  if (diff < 0) {
-    nextGame();
-  } else {
-    prevGame();
-  }
-});
+createCovers();
+updateScreen();

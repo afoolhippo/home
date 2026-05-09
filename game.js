@@ -36,6 +36,12 @@ const games = [
     image: "images/fish.png",
     url: "https://afoolhippo.github.io/game7/"
   },
+  {
+    title: "はみがきしようぜ！",
+    description: "ゴシゴシみがこう！",
+    image: "images/hamigaki.png",
+    url: "https://afoolhippo.github.io/game8/"
+  },
 {
   title: "二日酔いロード",
   description: "ふらつきながら、夜のまちを歩け。",

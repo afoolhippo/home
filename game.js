@@ -42,6 +42,12 @@ const games = [
     image: "images/hamigaki.png",
     url: "https://afoolhippo.github.io/game8/"
   },
+  {
+    title: "苗字苗字yeah",
+    description: "よまれた苗字のカルタをゲットせよ！",
+    image: "images/myouji.png",
+    url: "https://afoolhippo.github.io/game9/"
+  },
 {
   title: "二日酔いロード",
   description: "ふらつきながら、夜のまちを歩け。",

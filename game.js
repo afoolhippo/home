@@ -475,3 +475,17 @@ document.addEventListener("keydown", (event) => {
 
 createCovers();
 updateScreen();
+
+const params = new URLSearchParams(window.location.search);
+const skipTitle = params.get("skipTitle");
+
+if (skipTitle === "1") {
+  titleScreen.classList.add("hidden");
+  selectScreen.classList.remove("hidden");
+
+  history.replaceState(
+    {},
+    "",
+    window.location.pathname
+  );
+}

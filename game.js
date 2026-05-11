@@ -17,7 +17,6 @@ const games = [
     image: "images/gameni-soul.png",
     url: "https://afoolhippo.github.io/game3/"
   },
-
   {
     title: "ポキポキきゅうり",
     description: "きゅうりをベストタイミングでポキッ！",
@@ -30,6 +29,12 @@ const games = [
     image: "images/bamboo.png",
     url: "https://afoolhippo.github.io/game5/"
   },
+{
+  title: "二日酔いロード",
+  description: "ふらつきながら、夜のまちを歩け。",
+  image: "images/futsukayoi-road.png",
+  url: "https://afoolhippo.github.io/game6/"
+},
   {
     title: "FISHING BOY",
     description: "釣れるは大魚か空き缶か！？",
@@ -48,12 +53,18 @@ const games = [
     image: "images/myouji.png",
     url: "https://afoolhippo.github.io/game9/"
   },
-{
-  title: "二日酔いロード",
-  description: "ふらつきながら、夜のまちを歩け。",
-  image: "images/futsukayoi-road.png",
-  url: "https://afoolhippo.github.io/game6/"
-}
+  {
+    title: "サルトリイバラ",
+    description: "イバラをかきわけバナナを目指せ！",
+    image: "images/sarutori.png",
+    url: "https://afoolhippo.github.io/game10/"
+  },
+  {
+    title: "タポタポオレンジ",
+    description: "オレンジジュース、どこまで飲めるかな？",
+    image: "images/orange.png",
+    url: "https://afoolhippo.github.io/game11/"
+  }
 ];
 
 let currentIndex = 0;

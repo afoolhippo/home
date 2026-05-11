@@ -64,6 +64,12 @@ const games = [
     description: "オレンジジュース、どこまで飲めるかな？",
     image: "images/orange.png",
     url: "https://afoolhippo.github.io/game11/"
+  },
+  {
+    title: "テトリスコーヒー",
+    description: "テトリスを崩して混ぜて、カフェオレをつくれ！",
+    image: "images/tetris.png",
+    url: "https://afoolhippo.github.io/game12/"
   }
 ];
 

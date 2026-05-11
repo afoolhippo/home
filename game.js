@@ -100,11 +100,15 @@ const enterSound = new Audio("sounds/enter.mp3");
 const selectSound = new Audio("sounds/select1.mp3");
 const decideSound = new Audio("sounds/select2.mp3");
 
+/* 音量調整（0.0〜1.0） */
+enterSound.volume = 0.08;
+selectSound.volume = 0.05;
+decideSound.volume = 0.07;
+
 function playSound(sound) {
   sound.currentTime = 0;
   sound.play().catch(() => {});
 }
-
 /* UTILITY */
 
 function wrapIndex(value) {

@@ -79,24 +79,6 @@ const games = {
         title: "バカなカバの大冒険",
         image: "baka-kaba.png",
         url: "https://afoolhippo.github.io/hippogame/"
-      },
-
-      {
-        title: "カバファイト",
-        image: "kabafight.png",
-        url: "https://afoolhippo.github.io/game14/"
-      },
-
-      {
-        title: "放課後カバメモリアル",
-        image: "memorial.png",
-        url: "https://afoolhippo.github.io/game15/"
-      },
-
-      {
-        title: "ジャニー メリー ジュリー",
-        image: "jurry.png",
-        url: "https://afoolhippo.github.io/game13/"
       }
 
     ]
@@ -161,12 +143,15 @@ function createGameCard(game) {
   const card =
     document.createElement("a");
 
-  card.className = "game-card";
+  card.className =
+    "game-card";
 
-  card.href = game.url;
+  card.href =
+    game.url;
 
   card.innerHTML = `
     <img src="${game.image}" alt="${game.title}">
+
     <div class="game-title">
       ${game.title}
     </div>
@@ -183,7 +168,8 @@ function createFloor(section) {
   floor.className =
     `floor ${section.className}`;
 
-  floor.id = section.id;
+  floor.id =
+    section.id;
 
   floor.innerHTML = `
     <div class="floor-header">

@@ -2,70 +2,139 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
   <title>カバゲーセン</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <main id="app">
+  <div class="site">
 
-    <section id="titleScreen" class="title-screen">
+    <!-- ロビー -->
+
+    <section class="lobby" id="top">
 
       <img
-        src="images/kabagesen.png"
+        src="main-visual.png"
         alt="カバゲーセン"
-        class="title-image"
+        class="main-visual"
       >
 
-      <div class="tap-start">
-        PRESS START BUTTON
-      </div>
+      <p class="catch">
+        変なゲームしか置いてない、
+        町はずれのゲームセンター。
+      </p>
 
-    </section>
-
-    <section id="selectScreen" class="select-screen hidden">
-
-      <header class="select-header">
-        <h1>GAME SELECT</h1>
-        <p>カセットをスワイプしてえらんでください</p>
-      </header>
-
-      <div class="cover-flow">
-
-<button id="prevButton" class="nav-button arrow-left"></button>
-
-<div id="coverTrack" class="cover-track"></div>
-
-<button id="nextButton" class="nav-button arrow-right"></button>
-
-      </div>
-
-      <div id="positionDots" class="position-dots"></div>
-
-      <section class="game-info">
-
-        <h2 id="gameTitle"></h2>
-
-        <p id="gameDescription"></p>
-
-      </section>
-
-      <button id="playButton" class="play-button">
-        PLAY
+      <button
+        id="randomBtn"
+        class="random-btn"
+      >
+        🎲 ランダムで遊ぶ
       </button>
 
     </section>
 
-  </main>
+    <!-- フロアナビ -->
+
+    <nav class="floor-nav">
+
+      <a href="#floor1">
+        🍭 1F
+      </a>
+
+      <a href="#floor2">
+        🌇 2F
+      </a>
+
+      <a href="#basement">
+        🌀 実験部屋
+      </a>
+
+      <a href="#drink">
+        🥤 ドリンクバー
+      </a>
+
+    </nav>
+
+    <!-- ゲーム一覧 -->
+
+    <main id="gameArea"></main>
+
+    <!-- フッター -->
+
+    <footer class="footer">
+
+      <a href="#top" class="back-top">
+        ▲ ロビーへ戻る
+      </a>
+
+      <h3 class="creator-title">
+        製作者 a fool hippo（バカなカバ）
+      </h3>
+
+      <img
+        src="profile.png"
+        alt="a fool hippo"
+        class="profile-image"
+      >
+
+      <p class="profile">
+        福岡市東区箱崎を拠点に活動している
+        シンガーソングライター。<br><br>
+
+        好きな食べ物や何気ない日常の風景を切り取り、
+        日々曲を作ったり、
+        商店街のマルシェなどでライブを行っています。<br><br>
+
+        最近はゲーム開発に目覚め、
+        日々、無我夢中。
+      </p>
+
+      <div class="sns-links">
+
+        <a
+          href="https://bakanakaba.wixsite.com/afoolhippo"
+          target="_blank"
+          rel="noopener"
+        >
+          HP
+        </a>
+
+        <a
+          href="https://www.instagram.com/"
+          target="_blank"
+          rel="noopener"
+        >
+          Instagram
+        </a>
+
+        <a
+          href="https://x.com/"
+          target="_blank"
+          rel="noopener"
+        >
+          X
+        </a>
+
+        <a
+          href="https://www.youtube.com/"
+          target="_blank"
+          rel="noopener"
+        >
+          YouTube
+        </a>
+
+      </div>
+
+    </footer>
+
+  </div>
 
   <script src="game.js"></script>
 

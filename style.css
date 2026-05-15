@@ -142,9 +142,6 @@ body {
 .news-new {
   color: #ff006e;
 }
-.news-new {
-  color: #ff006e;
-}
 
 /* フロアナビ */
 
@@ -516,22 +513,4 @@ body {
       5px solid #2b1b2f;
   }
 
-}
-
-/* アクセスカウンター */
-
-.visitor-counter {
-  margin-top: 8px;
-
-  text-align: center;
-}
-
-.visitor-counter img {
-  image-rendering: pixelated;
-
-  transform: scale(1.15);
-}
-
-#pr_pvcounter {
-  display: inline-block;
 }

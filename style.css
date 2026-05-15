@@ -529,5 +529,9 @@ body {
 .visitor-counter img {
   image-rendering: pixelated;
 
-  transform: scale(1.05);
+  transform: scale(1.15);
+}
+
+#pr_pvcounter {
+  display: inline-block;
 }

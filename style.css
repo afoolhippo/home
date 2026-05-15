@@ -521,43 +521,13 @@ body {
 /* アクセスカウンター */
 
 .visitor-counter {
-  display: flex;
-
-  justify-content: center;
-
-  gap: 18px;
-
   margin-top: 8px;
-}
-
-.counter-item {
-  font-size: 0.58rem;
-  line-height: 1.2;
 
   text-align: center;
-
-  color: #fff;
-
-  text-shadow:
-    1px 1px 0 #2b1b2f;
 }
 
-.counter-item span {
-  display: block;
+.visitor-counter img {
+  image-rendering: pixelated;
 
-  margin-top: 2px;
-
-  padding: 3px 8px;
-
-  color: #00ff66;
-
-  background: #111;
-
-  border:
-    2px solid #2b1b2f;
-
-  letter-spacing: 2px;
-
-  box-shadow:
-    2px 2px 0 rgba(0,0,0,0.25);
+  transform: scale(1.05);
 }

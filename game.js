@@ -263,9 +263,9 @@ randomBtn.addEventListener(
 
 renderFloors();
 
-/* TOTAL COUNTER */
+/* ===== TOTAL COUNTER ===== */
 
-fetch("https://api.countapi.xyz/hit/afoolhippo/kabagame-total")
+fetch("https://countapi.mileshilliard.com/api/v1/hit/afoolhippo/kabagame-total")
   .then(res => res.json())
   .then(data => {
 
@@ -274,16 +274,22 @@ fetch("https://api.countapi.xyz/hit/afoolhippo/kabagame-total")
         String(data.value)
           .padStart(5, "0");
 
+  })
+  .catch(() => {
+
+    document.getElementById("totalCounter")
+      .textContent = "ERROR";
+
   });
 
-/* TODAY COUNTER */
+/* ===== TODAY COUNTER ===== */
 
 const todayKey =
   new Date()
     .toISOString()
     .split("T")[0];
 
-fetch(`https://api.countapi.xyz/hit/afoolhippo/${todayKey}`)
+fetch(`https://countapi.mileshilliard.com/api/v1/hit/afoolhippo/${todayKey}`)
   .then(res => res.json())
   .then(data => {
 
@@ -291,5 +297,11 @@ fetch(`https://api.countapi.xyz/hit/afoolhippo/${todayKey}`)
       .textContent =
         String(data.value)
           .padStart(4, "0");
+
+  })
+  .catch(() => {
+
+    document.getElementById("todayCounter")
+      .textContent = "ERR";
 
   });

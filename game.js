@@ -262,3 +262,34 @@ randomBtn.addEventListener(
 );
 
 renderFloors();
+
+/* TOTAL COUNTER */
+
+fetch("https://api.countapi.xyz/hit/kabagame/home")
+  .then(res => res.json())
+  .then(data => {
+
+    document.getElementById("totalCounter")
+      .textContent =
+        String(data.value)
+          .padStart(5, "0");
+
+  });
+
+/* TODAY COUNTER */
+
+const todayKey =
+  new Date()
+    .toISOString()
+    .split("T")[0];
+
+fetch(`https://api.countapi.xyz/hit/kabagame/${todayKey}`)
+  .then(res => res.json())
+  .then(data => {
+
+    document.getElementById("todayCounter")
+      .textContent =
+        String(data.value)
+          .padStart(4, "0");
+
+  });

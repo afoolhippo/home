@@ -265,7 +265,7 @@ renderFloors();
 
 /* TOTAL COUNTER */
 
-fetch("https://api.countapi.xyz/hit/kabagame/home")
+fetch("https://api.countapi.xyz/hit/afoolhippo/kabagame-total")
   .then(res => res.json())
   .then(data => {
 
@@ -283,7 +283,7 @@ const todayKey =
     .toISOString()
     .split("T")[0];
 
-fetch(`https://api.countapi.xyz/hit/kabagame/${todayKey}`)
+fetch(`https://api.countapi.xyz/hit/afoolhippo/${todayKey}`)
   .then(res => res.json())
   .then(data => {
 

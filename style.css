@@ -10,24 +10,17 @@ html {
 
 body {
   margin: 0;
-
   font-family: "DotGothic16", sans-serif;
-
   background: #2b1b2f;
-
   color: #2b1b2f;
 }
 
 .site {
   width: 100%;
   max-width: 480px;
-
   min-height: 100vh;
-
   margin: 0 auto;
-
   background: #ffe27a;
-
   overflow: hidden;
 }
 
@@ -35,104 +28,65 @@ body {
 
 .lobby {
   padding: 0 0 18px;
-
   text-align: center;
-
-  background:
-    linear-gradient(
-      180deg,
-      #ff75c8 0%,
-      #ffd65c 58%,
-      #67ddff 100%
-    );
-
-  border-bottom:
-    5px solid #2b1b2f;
+  background: linear-gradient(
+    180deg,
+    #ff75c8 0%,
+    #ffd65c 58%,
+    #67ddff 100%
+  );
+  border-bottom: 5px solid #2b1b2f;
 }
 
 .main-visual {
   display: block;
-
   width: 100%;
-
-  border: none;
-
-  box-shadow: none;
-
   image-rendering: pixelated;
 }
 
 .catch {
   max-width: 340px;
-
-  margin:
-    16px auto 12px;
-
+  margin: 16px auto 12px;
   padding: 10px 12px;
-
   font-size: 0.9rem;
   line-height: 1.6;
-
-  background:
-    rgba(255, 255, 255, 0.82);
-
-  border:
-    3px solid #2b1b2f;
+  background: rgba(255,255,255,0.82);
+  border: 3px solid #2b1b2f;
 }
 
 .random-btn {
   width: 88%;
   max-width: 320px;
-
   padding: 13px 12px;
-
   font-family: inherit;
   font-size: 1.05rem;
-
   color: #fff;
-
   background: #ff3b78;
-
-  border:
-    4px solid #2b1b2f;
-
-  box-shadow:
-    4px 4px 0 #2b1b2f;
-
+  border: 4px solid #2b1b2f;
+  box-shadow: 4px 4px 0 #2b1b2f;
   cursor: pointer;
 }
 
 .random-btn:active {
-  transform:
-    translate(3px, 3px);
-
-  box-shadow:
-    1px 1px 0 #2b1b2f;
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 #2b1b2f;
 }
 
 /* おしらせ */
 
 .news {
   width: calc(100% - 24px);
-
   max-width: 340px;
-
   margin: 10px auto 10px;
 }
 
 .news-box {
   padding: 8px 10px;
-
   font-size: 0.76rem;
   line-height: 1.32;
-
   text-align: center;
-
-  background:
-    rgba(255,255,255,0.82);
-
-  border:
-    3px solid #2b1b2f;
+  background: rgba(255,255,255,0.82);
+  border: 3px solid #2b1b2f;
 }
 
 .news-title {
@@ -148,369 +102,205 @@ body {
 .floor-nav {
   position: sticky;
   top: 0;
-
   z-index: 20;
-
   display: grid;
-
-  grid-template-columns:
-    repeat(4, 1fr);
-
+  grid-template-columns: repeat(4, 1fr);
   gap: 4px;
-
   padding: 8px;
-
   background: #2b1b2f;
 }
 
 .floor-nav a {
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   min-height: 42px;
-
   padding: 6px 2px;
-
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   line-height: 1.2;
-
   color: #2b1b2f;
-
   text-align: center;
   text-decoration: none;
-
   background: #fffdf2;
-
-  border:
-    3px solid #2b1b2f;
-}
-
-.floor-nav a:active {
-  background: #ffec5c;
+  border: 3px solid #2b1b2f;
 }
 
 /* フロア */
 
 .floor {
   padding: 26px 12px 36px;
-
-  border-bottom:
-    5px solid #2b1b2f;
+  border-bottom: 5px solid #2b1b2f;
 }
 
 .floor-header {
   margin-bottom: 16px;
-
   text-align: center;
 }
 
 .floor-title {
   display: inline-block;
-
   margin: 0;
-
   padding: 8px 16px;
-
   font-size: 1.28rem;
-  line-height: 1.25;
-
   background: #fffdf2;
-
-  border:
-    4px solid #2b1b2f;
-
-  box-shadow:
-    4px 4px 0 rgba(43, 27, 47, 0.38);
+  border: 4px solid #2b1b2f;
 }
 
 .floor-desc {
   max-width: 340px;
-
-  margin:
-    12px auto 0;
-
+  margin: 12px auto 0;
   font-size: 0.84rem;
   line-height: 1.55;
-
-  white-space: normal;
 }
 
-/* フロア別カラー */
+/* フロアカラー */
 
 .floor-1 {
-  background:
-    linear-gradient(
-      180deg,
-      #a8ff75 0%,
-      #ffe96b 100%
-    );
+  background: linear-gradient(
+    180deg,
+    #a8ff75 0%,
+    #ffe96b 100%
+  );
 }
 
 .floor-2 {
-  background:
-    linear-gradient(
-      180deg,
-      #ffb347 0%,
-      #ff7ab6 48%,
-      #9c7cff 100%
-    );
+  background: linear-gradient(
+    180deg,
+    #ffb347 0%,
+    #ff7ab6 48%,
+    #9c7cff 100%
+  );
 }
 
-.floor-b1 {
-  color: #fff;
-
-  background:
-    linear-gradient(
-      180deg,
-      #4b3374 0%,
-      #241632 100%
-    );
-}
-
-.floor-b1 .floor-title {
-  color: #2b1b2f;
-}
-
-.floor-b1 .floor-desc {
-  color: #fff;
+.floor-food {
+  background: linear-gradient(
+    180deg,
+    #ffb86a 0%,
+    #ffe27a 100%
+  );
 }
 
 .floor-drink {
-  background:
-    linear-gradient(
-      180deg,
-      #6de7ff 0%,
-      #82ffcf 50%,
-      #fff06a 100%
-    );
+  background: linear-gradient(
+    180deg,
+    #6de7ff 0%,
+    #82ffcf 50%,
+    #fff06a 100%
+  );
 }
 
-/* ゲームカード */
+/* ゲーム */
 
 .game-grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(2, 1fr);
-
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
 
 .game-card {
   display: block;
-
   color: #2b1b2f;
-
   text-decoration: none;
-
   background: #fffdf2;
-
-  border:
-    4px solid #2b1b2f;
-
-  box-shadow:
-    4px 4px 0 rgba(43, 27, 47, 0.35);
-
+  border: 4px solid #2b1b2f;
   overflow: hidden;
 }
 
-.game-card:active {
-  transform:
-    translate(3px, 3px);
-
-  box-shadow:
-    1px 1px 0 rgba(43, 27, 47, 0.35);
+.game-thumb {
+  position: relative;
 }
 
 .game-card img {
   display: block;
-
   width: 100%;
-
   aspect-ratio: 5 / 4;
-
   object-fit: cover;
-
-  background: #ddd;
-
   image-rendering: pixelated;
+  border-bottom: 4px solid #2b1b2f;
+}
 
-  border-bottom:
-    4px solid #2b1b2f;
+.new-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 3px 6px;
+  font-size: 0.62rem;
+  color: #fff;
+  background: #ff2b55;
+  border: 2px solid #fff;
+  box-shadow: 2px 2px 0 #2b1b2f;
 }
 
 .game-title {
   min-height: 46px;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   padding: 7px 5px;
-
   font-size: 0.82rem;
-  line-height: 1.25;
-
   text-align: center;
-}
-
-/* COMING SOON */
-
-.coming-soon {
-  padding: 34px 14px;
-
-  font-size: 1.15rem;
-  line-height: 1.5;
-
-  text-align: center;
-
-  color: #fff;
-
-  background:
-    rgba(255, 255, 255, 0.13);
-
-  border:
-    4px dashed #fff;
 }
 
 /* フッター */
 
 .footer {
   padding: 28px 12px 44px;
-
   text-align: center;
-
   color: #fff;
-
   background: #2b1b2f;
 }
 
 .back-top {
   display: inline-block;
-
   margin-bottom: 20px;
-
   color: #fff;
-
-  font-size: 0.9rem;
-
   text-decoration: none;
-
-  border-bottom:
-    2px solid #fff;
+  border-bottom: 2px solid #fff;
 }
 
 .creator-title {
   margin: 0 0 14px;
-
   font-size: 1rem;
-  line-height: 1.5;
 }
 
 .profile-image {
   width: 140px;
   height: 140px;
-
   object-fit: cover;
-
   display: block;
-
-  margin:
-    0 auto 16px;
-
-  border:
-    4px solid #fff;
-
-  background: #fff;
-
+  margin: 0 auto 16px;
+  border: 4px solid #fff;
   image-rendering: pixelated;
-
-  box-shadow:
-    4px 4px 0 #ff4b8b;
 }
 
 .profile {
   width: fit-content;
-
   max-width: 92%;
-
-  margin:
-    0 auto 18px;
-
+  margin: 0 auto 18px;
   padding: 12px;
-
   font-size: 0.82rem;
   line-height: 1.7;
-
   text-align: left;
-
-  color: #fff;
-
-  border:
-    3px solid #fff;
-
-  background:
-    rgba(255, 255, 255, 0.08);
+  border: 3px solid #fff;
 }
 
 .sns-links {
   display: grid;
-
-  grid-template-columns:
-    repeat(4, 1fr);
-
+  grid-template-columns: repeat(4, 1fr);
   gap: 7px;
-
   max-width: 390px;
-
   margin: 0 auto;
 }
 
 .sns-links a {
   min-height: 46px;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   padding: 8px 4px;
-
   font-size: 0.72rem;
-  line-height: 1.15;
-
   color: #2b1b2f;
-
   text-decoration: none;
-
   background: #fffdf2;
-
-  border:
-    3px solid #fffdf2;
-
-  box-shadow:
-    3px 3px 0 #ff4b8b;
-}
-
-.sns-links a:active {
-  transform:
-    translate(2px, 2px);
-
-  box-shadow:
-    1px 1px 0 #ff4b8b;
-}
-
-@media (min-width: 520px) {
-
-  .site {
-    border-left:
-      5px solid #2b1b2f;
-
-    border-right:
-      5px solid #2b1b2f;
-  }
-
+  border: 3px solid #fffdf2;
 }

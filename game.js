@@ -35,7 +35,6 @@ const games = {
         title: "サルトリイバラ",
         image: "sarutori.png",
         url: "https://afoolhippo.github.io/game10/",
-        isNew: true
       },
       {
         title: "FISHING BOY",
@@ -64,7 +63,7 @@ const games = {
     id: "food",
     title: "🍜 フードコート",
     desc:
-      "うどん、ジュース、コーヒー。<br>お腹がすいたらこちらへ。",
+      "うどんやがめ煮など<br>お腹がすいたらこちらへ。",
     className: "floor-food",
     items: [
       {
@@ -76,7 +75,6 @@ const games = {
         title: "箱太郎伝説",
         image: "hakotarou.png",
         url: "https://afoolhippo.github.io/game19/",
-        isNew: true
       }
     ]
   },
@@ -85,7 +83,7 @@ const games = {
     id: "drink",
     title: "🥤 ドリンクバー",
     desc:
-      "のみもの系ゲームはこちら。<br>飲みすぎ注意の休憩コーナー。",
+      "のみもの系はこちら。<br>飲みすぎ注意の休憩コーナー。",
     className: "floor-drink",
     items: [
       {

@@ -6,59 +6,59 @@ const games = {
     title: "🍭 1F キッズゲーム",
 
     desc:
-      "みんなでワイワイ遊べる、にぎやかなゲームフロア。",
+      "みんなでワイワイ遊べる、<br>にぎやかなゲームフロア。",
 
     className: "floor-1",
 
-    featured: "FISHING BOY",
+    featured: "ポキポキきゅうり",
 
     items: [
 
       {
         title: "ポキポキきゅうり",
-        image: "pokipoki.png",
+        image: "game4.png",
         url: "https://afoolhippo.github.io/game4/",
         tag: "反射神経"
       },
 
       {
         title: "はみがきしようぜ",
-        image: "hamigaki.png",
+        image: "game8.png",
         url: "https://afoolhippo.github.io/game8/",
-        tag: "退治"
+        tag: "早押し"
       },
 
       {
         title: "みんなでそっか！",
-        image: "sokka.png",
+        image: "game2.png",
         url: "https://afoolhippo.github.io/game2/",
         tag: "音ゲー"
       },
 
       {
         title: "苗字苗字yeah",
-        image: "myouji.png",
+        image: "game9.png",
         url: "https://afoolhippo.github.io/game9/",
         tag: "カルタ"
       },
 
       {
         title: "BABY BABY BAMBOO",
-        image: "bamboo.png",
+        image: "game5.png",
         url: "https://afoolhippo.github.io/game5/",
         tag: "早押し"
       },
 
       {
         title: "サルトリイバラ",
-        image: "sarutori.png",
+        image: "game10.png",
         url: "https://afoolhippo.github.io/game10/",
-        tag: "迷路"
+        tag: "トゲ避け"
       },
 
       {
         title: "FISHING BOY",
-        image: "fish.png",
+        image: "game7.png",
         url: "https://afoolhippo.github.io/game7/",
         tag: "釣り"
       }
@@ -72,7 +72,7 @@ const games = {
     title: "🌇 2F 放課後ゲーム",
 
     desc:
-      "夕焼け、寄り道、放課後。ちょっと不思議なゲームコーナー。",
+      "夕焼け、寄り道、放課後。<br>ちょっと不思議なゲームコーナー。",
 
     className: "floor-2",
 
@@ -82,7 +82,7 @@ const games = {
 
       {
         title: "バカなカバの大冒険",
-        image: "baka-kaba.png",
+        image: "game1.png",
         url: "https://afoolhippo.github.io/hippogame/",
         tag: "RPG"
       }
@@ -96,7 +96,7 @@ const games = {
     title: "🍜 フードコート",
 
     desc:
-      "うどん、ジュース、コーヒー。お腹がすいたらこちらへ。",
+      "うどんやがめ煮など。<br>お腹がすいたらこちらへ。",
 
     className: "floor-food",
 
@@ -106,14 +106,14 @@ const games = {
 
       {
         title: "がめ煮ソウル",
-        image: "gameni-soul.png",
+        image: "game3.png",
         url: "https://afoolhippo.github.io/game3/",
         tag: "具材集め"
       },
 
       {
         title: "箱太郎伝説",
-        image: "hakotarou.png",
+        image: "game19.png",
         url: "https://afoolhippo.github.io/game19/",
         tag: "うどんづくり"
       }
@@ -127,33 +127,33 @@ const games = {
     title: "🥤 ドリンクバー",
 
     desc:
-      "のみもの系ゲームはこちら。飲みすぎ注意の休憩コーナー。",
+      "のみもの系はこちら。<br>飲みすぎ注意の休憩コーナー。",
 
     className: "floor-drink",
 
-    featured: "タポタポオレンジ",
+    featured: "二日酔いロード",
 
     items: [
 
       {
         title: "テトリスコーヒー",
-        image: "tetris.png",
+        image: "game12.png",
         url: "https://afoolhippo.github.io/game12/",
-        tag: "パズル"
+        tag: "謎パズル"
       },
 
       {
         title: "タポタポオレンジ",
-        image: "orange.png",
+        image: "game11.png",
         url: "https://afoolhippo.github.io/game11/",
         tag: "我慢"
       },
 
       {
         title: "二日酔いロード",
-        image: "futsukayoi-road.png",
+        image: "game6.png",
         url: "https://afoolhippo.github.io/game6/",
-        tag: "回避"
+        tag: "電柱回避"
       }
 
     ]

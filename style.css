@@ -129,6 +129,63 @@ body {
     4px 4px 0 #2b1b2f;
 }
 
+/* 最近の記録 */
+
+.recent-records {
+  width: calc(100% - 24px);
+  max-width: 340px;
+  margin: 0 auto 12px;
+}
+
+.recent-records-box {
+  padding: 8px 10px;
+  text-align: left;
+  background: rgba(255,255,255,0.86);
+  border: 3px solid #2b1b2f;
+}
+
+.recent-records-title {
+  margin-bottom: 6px;
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+.recent-record-list {
+  max-height: 160px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 4px;
+  scrollbar-width: thin;
+}
+
+.record-card,
+.record-loading {
+  padding: 7px 8px;
+  background: #fffdf2;
+  border: 2px solid #2b1b2f;
+  font-size: 0.72rem;
+}
+
+.record-rank {
+  font-size: 0.78rem;
+  line-height: 1.25;
+  color: #ff006e;
+}
+
+.record-meta {
+  margin-top: 3px;
+  font-size: 0.66rem;
+  line-height: 1.35;
+}
+
+.record-score {
+  margin-top: 2px;
+  font-size: 0.72rem;
+  text-align: right;
+}
+
 /* 固定ナビ */
 
 .floor-nav {

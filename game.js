@@ -167,6 +167,79 @@ const gameArea =
 const randomBtn =
   document.getElementById("randomBtn");
 
+const SUPABASE_URL =
+  "https://gmncxnybsovlallxgnkd.supabase.co";
+
+const SUPABASE_ANON_KEY =
+  "sb_publishable_ly3h5OhL8HDSHhYdmJq_Fw_9pG3mhla";
+
+const kabaDb =
+  supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
+
+const recentRecordList =
+  document.getElementById("recentRecordList");
+
+function escapeHtml(text) {
+  return String(text ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+async function loadRecentRecords() {
+  if (!recentRecordList) return;
+
+  const { data, error } = await kabaDb
+    .from("kaba_scores")
+    .select("*")
+    .order("created_at", { ascending: false })
+    .limit(5);
+
+  if (error) {
+    console.error(error);
+
+    recentRecordList.innerHTML = `
+      <div class="record-card">
+        記録を読み込めませんでした
+      </div>
+    `;
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    recentRecordList.innerHTML = `
+      <div class="record-card">
+        まだ記録がありません
+      </div>
+    `;
+    return;
+  }
+
+  recentRecordList.innerHTML =
+    data.map(record => `
+      <div class="record-card">
+        <div class="record-rank">
+          ${escapeHtml(record.rank_title)}
+        </div>
+
+        <div class="record-meta">
+          ${escapeHtml(record.game_title)}
+          /
+          ${escapeHtml(record.nickname)}
+        </div>
+
+        <div class="record-score">
+          ${escapeHtml(record.score)}てん
+        </div>
+      </div>
+    `).join("");
+}
+
 function createGameCard(game) {
 
   const card =
@@ -315,3 +388,4 @@ randomBtn.addEventListener(
 );
 
 renderFloors();
+loadRecentRecords();

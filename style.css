@@ -185,6 +185,27 @@ body {
   font-size: 0.72rem;
   text-align: right;
 }
+.record-link-btn {
+  display: block;
+
+  margin-top: 8px;
+  padding: 7px 8px;
+
+  font-size: 0.7rem;
+  text-align: center;
+
+  color: #fff;
+
+  text-decoration: none;
+
+  background: #ff3b78;
+
+  border:
+    2px solid #2b1b2f;
+
+  box-shadow:
+    2px 2px 0 rgba(43, 27, 47, 0.28);
+}
 
 /* 固定ナビ */
 

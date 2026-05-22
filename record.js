@@ -25,27 +25,27 @@ const GAME_OPTIONS = [
     mode: "timeline"
   },
   {
-    id: "game8",
-    title: "はみがきしようぜ！",
-    icon: "🪥",
-    mode: "ranking"
-  }
-  {
     id: "game2",
     title: "みんなでそっか！",
     icon: "🕺",
     mode: "ranking"
-  }
-  {
+  },
+　{
     id: "game3",
-    title: "がめ煮",
+    title: "がめ煮ソウル",
     icon: "🍲",
     mode: "ranking"
-  }
-  {
+  },
+　{
     id: "game4",
     title: "ポキポキきゅうり",
     icon: "🥒",
+    mode: "ranking"
+  }, 
+  {
+    id: "game8",
+    title: "はみがきしようぜ！",
+    icon: "🪥",
     mode: "ranking"
   }
 ];

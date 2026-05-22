@@ -76,7 +76,7 @@ const games = {
 
     className: "floor-2",
 
-    featured: "バカなカバの大冒険",
+    featured: "カバファイト",
 
     items: [
 
@@ -84,7 +84,13 @@ const games = {
         title: "バカなカバの大冒険",
         image: "game1.png",
         url: "https://afoolhippo.github.io/hippogame/",
-        tag: "RPG"
+        tag: "ＲＰＧ"
+      }
+      {
+        title: "カバファイト",
+        image: "game14.png",
+        url: "https://afoolhippo.github.io/game14/",
+        tag: "格闘ゲーム"
       }
 
     ]

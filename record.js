@@ -42,6 +42,18 @@ const GAME_OPTIONS = [
     icon: "🥒",
     mode: "ranking"
   }, 
+　{
+    id: "game5",
+    title: "BABY BABY BAMBOO",
+    icon: "🎋",
+    mode: "ranking"
+  }, 
+　{
+    id: "game9",
+    title: "苗字苗字yeah",
+    icon: "🏷️",
+    mode: "ranking"
+  }, 
   {
     id: "game8",
     title: "はみがきしようぜ！",

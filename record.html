@@ -10,60 +10,51 @@
 
   <title>カバゲーセン記録掲示板</title>
 
-  <link rel="stylesheet" href="records.css" />
+  <link rel="stylesheet" href="record.css" />
 </head>
 
 <body>
 
-  <main class="records-page">
+  <div class="record-page">
 
-    <header class="records-header">
-      <div class="tape tape-left"></div>
-      <div class="tape tape-right"></div>
+    <header class="record-header">
 
-      <h1>
-        🏆 カバゲーセン<br>
-        記録掲示板
+      <h1 class="record-title">
+        🏆 カバゲーセン記録掲示板
       </h1>
 
-      <p>
-        ゲームの記録が<br>
-        ここに貼り出されます。
+      <p class="record-sub">
+        最近のゲーム記録を表示しています。
       </p>
+
+      <a
+        href="index.html"
+        class="back-btn"
+      >
+        ◀ ロビーへ戻る
+      </a>
+
     </header>
 
-    <section class="filter-area">
-      <label for="gameSelect">
-        ゲームを選ぶ
-      </label>
+    <main class="record-main">
 
-      <select id="gameSelect">
-      </select>
-    </section>
+      <div
+        id="recordList"
+        class="record-list"
+      >
 
-    <section class="ranking-area">
-      <div id="rankingTitle" class="ranking-title">
-        🪥 はみがきしようぜ ランキング
-      </div>
-
-      <div id="rankingList" class="ranking-list">
         <div class="loading-card">
           記録を読み込み中...
         </div>
+
       </div>
-    </section>
 
-    <a
-      href="https://afoolhippo.github.io/home/"
-      class="back-home"
-    >
-      ← ロビーへ戻る
-    </a>
+    </main>
 
-  </main>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="records.js"></script>
+  <script src="record.js"></script>
 
 </body>
 </html>

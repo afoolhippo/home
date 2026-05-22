@@ -10,28 +10,11 @@ const kabaDb =
     SUPABASE_ANON_KEY
   );
 
-/*
-  今後ゲームを増やす時は、
-  この配列に追加するだけでOK。
-*/
-const GAME_OPTIONS = [
-  {
-    id: "game8",
-    title: "はみがきしようぜ",
-    icon: "🪥"
-  }
-];
-
-const gameSelect =
-  document.getElementById("gameSelect");
-
-const rankingTitle =
-  document.getElementById("rankingTitle");
-
-const rankingList =
-  document.getElementById("rankingList");
+const recordList =
+  document.getElementById("recordList");
 
 function escapeHtml(text) {
+
   return String(text ?? "")
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
@@ -40,95 +23,42 @@ function escapeHtml(text) {
     .replaceAll("'", "&#039;");
 }
 
-function setupGameSelect() {
-  gameSelect.innerHTML = "";
-
-  GAME_OPTIONS.forEach(game => {
-    const option =
-      document.createElement("option");
-
-    option.value =
-      game.title;
-
-    option.textContent =
-      game.title;
-
-    gameSelect.appendChild(option);
-  });
-
-  gameSelect.addEventListener(
-    "change",
-    () => {
-      loadRanking(gameSelect.value);
-    }
-  );
-}
-
-function getRankMark(index) {
-  if (index === 0) return "🥇";
-  if (index === 1) return "🥈";
-  if (index === 2) return "🥉";
-
-  return `${index + 1}位`;
-}
-
-function formatDate(value) {
-  if (!value) return "";
+function formatDate(dateString) {
 
   const date =
-    new Date(value);
+    new Date(dateString);
 
-  if (Number.isNaN(date.getTime())) {
-    return "";
-  }
-
-  const y =
-    date.getFullYear();
-
-  const m =
-    date.getMonth() + 1;
-
-  const d =
-    date.getDate();
-
-  const hh =
-    String(date.getHours()).padStart(2, "0");
-
-  const mm =
-    String(date.getMinutes()).padStart(2, "0");
-
-  return `${y}.${m}.${d} ${hh}:${mm}`;
+  return `
+    ${date.getFullYear()}
+    /
+    ${String(date.getMonth() + 1).padStart(2, "0")}
+    /
+    ${String(date.getDate()).padStart(2, "0")}
+    ${String(date.getHours()).padStart(2, "0")}
+    :
+    ${String(date.getMinutes()).padStart(2, "0")}
+  `.replace(/\s+/g, " ");
 }
 
-async function loadRanking(gameTitle) {
-  rankingList.innerHTML = `
-    <div class="loading-card">
-      記録を読み込み中...
-    </div>
-  `;
+async function loadRecords() {
 
-  const currentGame =
-    GAME_OPTIONS.find(
-      game => game.title === gameTitle
-    );
-
-  rankingTitle.textContent =
-    `${currentGame?.icon ?? "🏆"} ${gameTitle} ランキング`;
-
-  const { data, error } = await kabaDb
-    .from("kaba_scores")
-    .select("*")
-    .eq("game_title", gameTitle)
-    .order("score", { ascending: false })
-    .limit(30);
+  const { data, error } =
+    await kabaDb
+      .from("kaba_scores")
+      .select("*")
+      .order(
+        "created_at",
+        { ascending: false }
+      )
+      .limit(100);
 
   if (error) {
+
     console.error(error);
 
-    rankingList.innerHTML = `
-      <div class="empty-card">
-        記録を読み込めませんでした。<br>
-        Supabaseの設定を確認してください。
+    recordList.innerHTML = `
+      <div class="loading-card">
+        記録を読み込めませんでした
       </div>
     `;
 
@@ -136,53 +66,42 @@ async function loadRanking(gameTitle) {
   }
 
   if (!data || data.length === 0) {
-    rankingList.innerHTML = `
-      <div class="empty-card">
-        まだ記録がありません。<br>
-        最初の記録をねらおう！
+
+    recordList.innerHTML = `
+      <div class="loading-card">
+        まだ記録がありません
       </div>
     `;
 
     return;
   }
 
-  rankingList.innerHTML =
-    data.map((record, index) => {
-      const rankClass =
-        index < 3
-          ? `rank-${index + 1}`
-          : "";
+  recordList.innerHTML =
+    data.map(record => `
 
-      return `
-        <article class="rank-card ${rankClass}">
-          <div class="rank-head">
-            <div class="rank-place">
-              ${getRankMark(index)}
-            </div>
+      <div class="record-card">
 
-            <div class="rank-score">
-              ${escapeHtml(record.score)}てん
-            </div>
-          </div>
+        <div class="record-rank">
+          ${escapeHtml(record.rank_title)}
+        </div>
 
-          <div class="rank-name">
-            ${escapeHtml(record.nickname)}
-          </div>
+        <div class="record-meta">
+          ${escapeHtml(record.game_title)}
+          /
+          ${escapeHtml(record.nickname)}
+        </div>
 
-          <div class="rank-title-text">
-            ${escapeHtml(record.rank_title)}
-          </div>
+        <div class="record-score">
+          ${escapeHtml(record.score)}てん
+        </div>
 
-          <div class="rank-date">
-            ${escapeHtml(formatDate(record.created_at))}
-          </div>
-        </article>
-      `;
-    }).join("");
+        <div class="record-date">
+          ${formatDate(record.created_at)}
+        </div>
+
+      </div>
+
+    `).join("");
 }
 
-setupGameSelect();
-
-if (GAME_OPTIONS.length > 0) {
-  loadRanking(GAME_OPTIONS[0].title);
-}
+loadRecords();

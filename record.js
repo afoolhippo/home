@@ -30,6 +30,24 @@ const GAME_OPTIONS = [
     icon: "🪥",
     mode: "ranking"
   }
+  {
+    id: "game2",
+    title: "みんなでそっか！",
+    icon: "🕺",
+    mode: "ranking"
+  }
+  {
+    id: "game3",
+    title: "がめ煮",
+    icon: "🍲",
+    mode: "ranking"
+  }
+  {
+    id: "game4",
+    title: "ポキポキきゅうり",
+    icon: "🥒",
+    mode: "ranking"
+  }
 ];
 
 const gameSelect =

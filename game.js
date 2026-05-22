@@ -85,7 +85,7 @@ const games = {
         image: "game1.png",
         url: "https://afoolhippo.github.io/hippogame/",
         tag: "ＲＰＧ"
-      }
+      },
       {
         title: "カバファイト",
         image: "game14.png",

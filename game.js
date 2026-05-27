@@ -395,3 +395,175 @@ randomBtn.addEventListener(
 
 renderFloors();
 loadRecentRecords();
+
+/* =========================
+   ひとこと掲示板
+========================= */
+
+const boardModal =
+  document.getElementById(
+    "boardModal"
+  );
+
+const openBoardBtn =
+  document.getElementById(
+    "openBoardBtn"
+  );
+
+const closeBoardBtn =
+  document.getElementById(
+    "closeBoardBtn"
+  );
+
+const sendBoardBtn =
+  document.getElementById(
+    "sendBoardBtn"
+  );
+
+const boardMessageList =
+  document.getElementById(
+    "boardMessageList"
+  );
+
+const boardName =
+  document.getElementById(
+    "boardName"
+  );
+
+const boardMessage =
+  document.getElementById(
+    "boardMessage"
+  );
+
+openBoardBtn.addEventListener(
+  "click",
+  async () => {
+
+    boardModal.classList.remove(
+      "hidden"
+    );
+
+    loadBoardMessages();
+  }
+);
+
+closeBoardBtn.addEventListener(
+  "click",
+  () => {
+
+    boardModal.classList.add(
+      "hidden"
+    );
+  }
+);
+
+async function loadBoardMessages() {
+
+  boardMessageList.innerHTML =
+    "読み込み中...";
+
+  const { data, error } =
+    await kabaDb
+      .from("kaba_messages")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      )
+      .limit(10);
+
+  if (error) {
+
+    console.error(error);
+
+    boardMessageList.innerHTML =
+      "読み込み失敗";
+
+    return;
+  }
+
+  if (
+    !data ||
+    data.length === 0
+  ) {
+
+    boardMessageList.innerHTML =
+      "まだ書き込みがありません";
+
+    return;
+  }
+
+  boardMessageList.innerHTML =
+    data.map(item => `
+      <div class="board-message-card">
+
+        <div class="board-message-name">
+          ${
+            escapeHtml(
+              item.nickname ||
+              "名無しカバ"
+            )
+          }
+        </div>
+
+        <div>
+          ${escapeHtml(item.message)}
+        </div>
+
+      </div>
+    `).join("");
+}
+
+sendBoardBtn.addEventListener(
+  "click",
+  async () => {
+
+    const nickname =
+      boardName.value
+        .trim();
+
+    const message =
+      boardMessage.value
+        .trim();
+
+    if (!message) {
+
+      alert(
+        "ひとことを書いてください"
+      );
+
+      return;
+    }
+
+    sendBoardBtn.disabled = true;
+
+    const { error } =
+      await kabaDb
+        .from("kaba_messages")
+        .insert([
+          {
+            nickname,
+            message
+          }
+        ]);
+
+    sendBoardBtn.disabled = false;
+
+    if (error) {
+
+      console.error(error);
+
+      alert(
+        "投稿失敗"
+      );
+
+      return;
+    }
+
+    boardMessage.value = "";
+
+    loadBoardMessages();
+  }
+);

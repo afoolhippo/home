@@ -507,10 +507,16 @@ async function loadBoardMessages() {
             )
           }
         </div>
+<div class="board-message-date">
+  ${
+    new Date(item.created_at)
+      .toLocaleDateString("ja-JP")
+  }
+</div>
 
-        <div>
-          ${escapeHtml(item.message)}
-        </div>
+<div>
+  ${escapeHtml(item.message)}
+</div>
 
       </div>
     `).join("");

@@ -711,3 +711,11 @@ body {
 
   font-size: 0.65rem;
 }
+
+.board-message-date {
+  margin-bottom: 4px;
+
+  font-size: 0.58rem;
+
+  color: #666;
+}

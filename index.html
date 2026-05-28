@@ -15,83 +15,150 @@
 
 <body>
 
+  <!-- 上部バー -->
+
+  <header class="top-bar">
+
+    <button
+      id="menuBtn"
+      class="menu-btn"
+    >
+      ☰ フロア案内
+    </button>
+
+    <button
+      id="topRandomBtn"
+      class="top-random-btn"
+    >
+      🎲 ランダム
+    </button>
+
+  </header>
+
+  <!-- メニュー -->
+
+  <div
+    id="menuOverlay"
+    class="menu-overlay hidden"
+  >
+
+    <nav class="side-menu">
+
+      <div class="menu-title">
+        📡 カバゲーセン案内
+      </div>
+
+      <a href="#floor1" class="menu-link">
+        🍭 キッズゲーム
+      </a>
+
+      <a href="#floor2" class="menu-link">
+        🌇 放課後ゲーム
+      </a>
+
+      <a href="#food" class="menu-link">
+        🍜 フードコート
+      </a>
+
+      <a href="#drink" class="menu-link">
+        🥤 ドリンクバー
+      </a>
+
+      <div class="menu-divider"></div>
+
+      <a href="record.html" class="menu-link">
+        🏆 すべての記録
+      </a>
+
+      <button
+        id="menuBoardBtn"
+        class="menu-link menu-board-btn"
+      >
+        💬 ひとこと
+      </button>
+
+      <a href="#creator" class="menu-link">
+        👤 製作者について
+      </a>
+
+      <button
+        id="closeMenuBtn"
+        class="close-menu-btn"
+      >
+        とじる
+      </button>
+
+    </nav>
+
+  </div>
+
   <div class="site">
 
     <!-- ロビー -->
 
-<section class="lobby" id="top">
+    <section class="lobby" id="top">
 
-  <img
-    src="main-visual.png"
-    alt="カバゲーセン"
-    class="main-visual"
-  >
+      <img
+        src="main-visual.png"
+        alt="カバゲーセン"
+        class="main-visual"
+      >
 
-  <p class="catch">
-    変なゲームしか置いてない、<br>
-    町はずれのゲームセンター。
-  </p>
+      <p class="catch">
+        変なゲームしか置いてない、<br>
+        町はずれのゲームセンター。
+      </p>
 
-  <section class="news">
-    <div class="news-box">
-      <span class="news-title">📢 おしらせ</span><br>
-      <span class="news-new">NEW!</span><br>
-      2026.5.23 カバファイト追加！<br>
-      2026.5.15 サルトリイバラ追加！<br>
-      変なゲームを日々開発中。
-    </div>
-  </section>
+      <section class="news">
 
-<section class="recent-records">
-  <div class="recent-records-box">
-    <div class="recent-records-title">
-      🏆 最近の記録
-    </div>
+        <div class="news-box">
 
-<div id="recentRecordList" class="recent-record-list">
-  <div class="record-loading">
-    記録を読み込み中...
-  </div>
-</div>
+          <span class="news-title">
+            📢 おしらせ
+          </span><br>
 
-<a
-  href="record.html"
-  class="record-link-btn"
->
-  ▶ すべての記録を見る
-</a>
-  </div>
-</section>
+          <span class="news-new">
+            NEW!
+          </span><br>
 
-  <button
-    id="randomBtn"
-    class="random-btn"
-  >
-    🎲 ランダムで遊ぶ
-  </button>
+          2026.5.23 カバファイト追加！<br>
+          2026.5.15 サルトリイバラ追加！<br>
 
-</section>
-    <!-- 固定ナビ -->
+          変なゲームを日々開発中。
 
-    <nav class="floor-nav">
+        </div>
 
-      <a href="#floor1">
-        🍭 キッズ
-      </a>
+      </section>
 
-      <a href="#floor2">
-        🌇 放課後
-      </a>
+      <section class="recent-records">
 
-      <a href="#food">
-        🍜 フード
-      </a>
+        <div class="recent-records-box">
 
-      <a href="#drink">
-        🥤 ドリンク
-      </a>
+          <div class="recent-records-title">
+            🏆 最近の記録
+          </div>
 
-    </nav>
+          <div
+            id="recentRecordList"
+            class="recent-record-list"
+          >
+            <div class="record-loading">
+              記録を読み込み中...
+            </div>
+          </div>
+
+          <a
+            href="record.html"
+            class="record-link-btn"
+          >
+            ▶ すべての記録を見る
+          </a>
+
+        </div>
+
+      </section>
+
+    </section>
 
     <!-- ゲーム一覧 -->
 
@@ -99,7 +166,10 @@
 
     <!-- フッター -->
 
-    <footer class="footer">
+    <footer
+      class="footer"
+      id="creator"
+    >
 
       <a href="#top" class="back-top">
         ▲ ロビーへ戻る
@@ -116,10 +186,12 @@
       >
 
       <p class="profile">
-        福岡市東区箱崎を拠点に活動している<br>シンガーソングライター。<br><br>
+        福岡市東区箱崎を拠点に活動している<br>
+        シンガーソングライター。<br><br>
 
         好きな食べ物や何気ない日常の風景を切り取り、<br>
-        日々曲を作ったり、商店街のマルシェなどで<br>ライブを行っています。<br><br>
+        日々曲を作ったり、商店街のマルシェなどで<br>
+        ライブを行っています。<br><br>
 
         最近はゲーム開発に目覚め、日々、無我夢中。
       </p>
@@ -129,7 +201,6 @@
         <a
           href="https://bakanakaba.wixsite.com/afoolhippo"
           target="_blank"
-          rel="noopener"
         >
           HP
         </a>
@@ -137,7 +208,6 @@
         <a
           href="https://www.instagram.com/"
           target="_blank"
-          rel="noopener"
         >
           Instagram
         </a>
@@ -145,7 +215,6 @@
         <a
           href="https://x.com/"
           target="_blank"
-          rel="noopener"
         >
           X
         </a>
@@ -153,7 +222,6 @@
         <a
           href="https://www.youtube.com/"
           target="_blank"
-          rel="noopener"
         >
           YouTube
         </a>
@@ -164,70 +232,61 @@
 
   </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- 掲示板 -->
 
-<!-- ひとことボタン -->
+  <div
+    id="boardModal"
+    class="board-modal hidden"
+  >
 
-<button
-  id="openBoardBtn"
-  class="board-open-btn"
->
-  💬 ひとこと
-</button>
+    <div class="board-window">
 
-<!-- ひとことモーダル -->
+      <div class="board-title">
+        📡 カバ通信
+      </div>
 
-<div
-  id="boardModal"
-  class="board-modal hidden"
->
+      <input
+        id="boardName"
+        class="board-input"
+        maxlength="12"
+        placeholder="なまえ（任意）"
+      >
 
-  <div class="board-window">
+      <textarea
+        id="boardMessage"
+        class="board-textarea"
+        maxlength="80"
+        placeholder="ひとこと..."
+      ></textarea>
 
-    <div class="board-title">
-      📡 カバ通信
+      <button
+        id="sendBoardBtn"
+        class="board-send-btn"
+      >
+        かきこむ
+      </button>
+
+      <div
+        id="boardMessageList"
+        class="board-message-list"
+      >
+        読み込み中...
+      </div>
+
+      <button
+        id="closeBoardBtn"
+        class="board-close-btn"
+      >
+        とじる
+      </button>
+
     </div>
-
-    <input
-      id="boardName"
-      class="board-input"
-      maxlength="12"
-      placeholder="なまえ（任意）"
-    >
-
-    <textarea
-      id="boardMessage"
-      class="board-textarea"
-      maxlength="80"
-      placeholder="ひとこと..."
-    ></textarea>
-
-    <button
-      id="sendBoardBtn"
-      class="board-send-btn"
-    >
-      かきこむ
-    </button>
-
-    <div
-      id="boardMessageList"
-      class="board-message-list"
-    >
-      読み込み中...
-    </div>
-
-    <button
-      id="closeBoardBtn"
-      class="board-close-btn"
-    >
-      とじる
-    </button>
 
   </div>
 
-</div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="game.js"></script>
+  <script src="game.js"></script>
 
 </body>
 </html>

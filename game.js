@@ -133,26 +133,44 @@ experiment: {
 
   className: "floor-experiment",
 
-  featured: "",
+  featured: "うぱっち",
 
   items: [
       {
-        title: "二日酔いロード",
-        image: "game6.png",
-        url: "https://afoolhippo.github.io/game6/",
-        tag: "電柱回避"
+        title: "うぱっち",
+        image: "game22.png",
+        url: "https://afoolhippo.github.io/game22/",
+        tag: "育成"
       },
       {
-        title: "二日酔いロード",
-        image: "game6.png",
-        url: "https://afoolhippo.github.io/game6/",
-        tag: "電柱回避"
+        title: "夕暮れメダル",
+        image: "game17.png",
+        url: "https://afoolhippo.github.io/game17/",
+        tag: "メダル"
       },
       {
-        title: "二日酔いロード",
-        image: "game6.png",
-        url: "https://afoolhippo.github.io/game6/",
-        tag: "電柱回避"
+        title: "セコムボーイ",
+        image: "game24.png",
+        url: "https://afoolhippo.github.io/game24/",
+        tag: "巡回警備"
+      },
+      {
+        title: "雨漏り酒盛り",
+        image: "game25.png",
+        url: "https://afoolhippo.github.io/game25/",
+        tag: "防水対策"
+      },
+      {
+        title: "カメカメライフ",
+        image: "game26.png",
+        url: "https://afoolhippo.github.io/game26/",
+        tag: "ひたすら歩き"
+      },
+      {
+        title: "ホームパーティ",
+        image: "game27.png",
+        url: "https://afoolhippo.github.io/game27/",
+        tag: "空気読み"
       }
 ]
 }

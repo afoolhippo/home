@@ -556,6 +556,12 @@ body {
   color: #fff;
 }
 
-.floor-experiment .floor-title {
-  color: #2b1b2f;
+.floor-experiment {
+  background:
+    linear-gradient(
+      180deg,
+      #8d7dff 0%,
+      #72e6ff 52%,
+      #b5ffdb 100%
+    );
 }

@@ -544,3 +544,18 @@ body {
   font-size: 0.58rem;
   color: #666;
 }
+
+.floor-experiment {
+  background:
+    linear-gradient(
+      180deg,
+      #4b3374 0%,
+      #241632 100%
+    );
+
+  color: #fff;
+}
+
+.floor-experiment .floor-title {
+  color: #2b1b2f;
+}

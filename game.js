@@ -121,7 +121,42 @@ const games = {
         tag: "電柱回避"
       }
     ]
-  }
+  },
+
+experiment: {
+  id: "experiment",
+
+  title: "🧪 実験場",
+
+  desc:
+    "ちょっと変な試作ゲームはこちら。",
+
+  className: "floor-experiment",
+
+  featured: "",
+
+  items: [
+      {
+        title: "二日酔いロード",
+        image: "game6.png",
+        url: "https://afoolhippo.github.io/game6/",
+        tag: "電柱回避"
+      },
+      {
+        title: "二日酔いロード",
+        image: "game6.png",
+        url: "https://afoolhippo.github.io/game6/",
+        tag: "電柱回避"
+      },
+      {
+        title: "二日酔いロード",
+        image: "game6.png",
+        url: "https://afoolhippo.github.io/game6/",
+        tag: "電柱回避"
+      }
+]
+}
+
 };
 
 const gameArea = document.getElementById("gameArea");

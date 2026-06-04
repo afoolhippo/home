@@ -4,14 +4,8 @@ const games = {
     title: "🍭 1F キッズゲーム",
     desc: "みんなでワイワイ遊べる、<br>にぎやかなゲームフロア。",
     className: "floor-1",
-    featured: "ポキポキきゅうり",
+    featured: "はみがきしようぜ",
     items: [
-      {
-        title: "ポキポキきゅうり",
-        image: "game4.png",
-        url: "https://afoolhippo.github.io/game4/",
-        tag: "反射神経"
-      },
       {
         title: "はみがきしようぜ",
         image: "game8.png",
@@ -47,6 +41,12 @@ const games = {
         image: "game7.png",
         url: "https://afoolhippo.github.io/game7/",
         tag: "釣り"
+      },
+      {
+        title: "UFOを見た！",
+        image: "game21.png",
+        url: "https://afoolhippo.github.io/game21/",
+        tag: "早押し"
       }
     ]
   },
@@ -85,6 +85,12 @@ const games = {
         image: "game3.png",
         url: "https://afoolhippo.github.io/game3/",
         tag: "具材集め"
+      },
+      {
+        title: "ポキポキきゅうり",
+        image: "game4.png",
+        url: "https://afoolhippo.github.io/game4/",
+        tag: "反射神経"
       },
       {
         title: "箱太郎伝説",

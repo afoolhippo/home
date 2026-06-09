@@ -59,6 +59,18 @@ const GAME_OPTIONS = [
     title: "はみがきしようぜ！",
     icon: "🪥",
     mode: "ranking"
+  },
+  {
+    id: "game21",
+    title: "UFOを見た！",
+    icon: "🛸",
+    mode: "ranking"
+  },
+  {
+    id: "game19",
+    title: "箱太郎伝説",
+    icon: "🍜",
+    mode: "ranking"
   }
 ];
 

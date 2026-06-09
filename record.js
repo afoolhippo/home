@@ -67,7 +67,7 @@ const GAME_OPTIONS = [
     mode: "ranking"
   },
   {
-    id: "game19",
+    id: "game_hakotarou",
     title: "箱太郎伝説",
     icon: "🍜",
     mode: "ranking"

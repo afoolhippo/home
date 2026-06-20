@@ -67,6 +67,12 @@ const GAME_OPTIONS = [
     mode: "ranking"
   },
   {
+    id: "game29",
+    title: "Wifiないと生きていけない",
+    icon: "📶",
+    mode: "ranking"
+  },
+  {
     id: "game_hakotarou",
     title: "箱太郎伝説",
     icon: "🍜",

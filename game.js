@@ -47,6 +47,12 @@ const games = {
         image: "game21.png",
         url: "https://afoolhippo.github.io/game21/",
         tag: "早押し"
+      },
+      {
+        title: "Wifiないと生きていけない",
+        image: "game29.png",
+        url: "https://afoolhippo.github.io/game29/",
+        tag: "ブロック崩し"
       }
     ]
   },

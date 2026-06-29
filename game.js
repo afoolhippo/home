@@ -71,6 +71,12 @@ const games = {
         tag: "ＲＰＧ"
       },
       {
+        title: "放課後カバメモリアル",
+        image: "game15.png",
+        url: "https://afoolhippo.github.io/game15/",
+        tag: "恋愛系？"
+      },
+      {
         title: "カバファイト",
         image: "game14.png",
         url: "https://afoolhippo.github.io/game14/",

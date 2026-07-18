@@ -77,6 +77,12 @@ const games = {
         tag: "恋愛系？"
       },
       {
+        title: "ジャニーメリージュリー",
+        image: "game13.png",
+        url: "https://afoolhippo.github.io/game13/",
+        tag: "スロット"
+      },
+      {
         title: "カバファイト",
         image: "game14.png",
         url: "https://afoolhippo.github.io/game14/",

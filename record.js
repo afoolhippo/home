@@ -73,6 +73,12 @@ const GAME_OPTIONS = [
     mode: "ranking"
   },
   {
+    id: "game18",
+    title: "庭師deカット",
+    icon: "🌳",
+    mode: "ranking"
+  },
+  {
     id: "game21",
     title: "UFOを見た！",
     icon: "🛸",

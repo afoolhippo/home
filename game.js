@@ -59,6 +59,12 @@ const games = {
         image: "game16.png",
         url: "https://afoolhippo.github.io/game16/",
         tag: "地下スクロール"
+      },
+      {
+        title: "庭師 de カット",
+        image: "game18.png",
+        url: "https://afoolhippo.github.io/game18/",
+        tag: "枝切り"
       }
     ]
   },

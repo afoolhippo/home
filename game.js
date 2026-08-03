@@ -53,6 +53,12 @@ const games = {
         image: "game29.png",
         url: "https://afoolhippo.github.io/game29/",
         tag: "ブロック崩し"
+      },
+      {
+        title: "石炭掘って",
+        image: "game16.png",
+        url: "https://afoolhippo.github.io/game16/",
+        tag: "地下スクロール"
       }
     ]
   },

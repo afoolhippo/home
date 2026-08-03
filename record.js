@@ -61,6 +61,18 @@ const GAME_OPTIONS = [
     mode: "ranking"
   },
   {
+    id: "game13",
+    title: "ジャニーメリージュリー",
+    icon: "🎰",
+    mode: "ranking"
+  },
+  {
+    id: "game16",
+    title: "石炭掘って",
+    icon: "⛏",
+    mode: "ranking"
+  },
+  {
     id: "game21",
     title: "UFOを見た！",
     icon: "🛸",

@@ -219,11 +219,7 @@ const managerGameCard =
 const managerGameImage =
   document.getElementById("managerGameImage");
 
-const managerGameTitle =
-  document.getElementById("managerGameTitle");
 
-const managerGameTag =
-  document.getElementById("managerGameTag");
 
 const managerPlayBtn =
   document.getElementById("managerPlayBtn");
@@ -390,16 +386,14 @@ function showManagerRecommendation() {
     managerGameImage.alt = nextGame.title;
   }
 
-  if (managerGameTitle) {
-    managerGameTitle.textContent = nextGame.title;
-  }
 
-  if (managerGameTag) {
-    managerGameTag.textContent = nextGame.tag;
-  }
 
   if (managerGameCard) {
     managerGameCard.href = nextGame.url;
+    managerGameCard.setAttribute(
+      "aria-label",
+      `${nextGame.title}を遊ぶ`
+    );
   }
 
   if (managerPlayBtn) {

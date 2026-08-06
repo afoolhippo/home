@@ -362,19 +362,7 @@ function getRandomItem(items) {
   return items[index];
 }
 
-function showManagerRecommendation() {
-  const allGames = getAllGames();
-
-  if (allGames.length === 0) return;
-
-  let nextGame = getRandomItem(allGames);
-
-  if (allGames.length > 1 && currentManagerGame) {
-    while (nextGame.url === currentManagerGame.url) {
-      nextGame = getRandomItem(allGames);
-    }
-  }
-
+function applyManagerRecommendation(nextGame) {
   currentManagerGame = nextGame;
 
   if (managerSpeech) {
@@ -385,8 +373,6 @@ function showManagerRecommendation() {
     managerGameImage.src = nextGame.image;
     managerGameImage.alt = nextGame.title;
   }
-
-
 
   if (managerGameCard) {
     managerGameCard.href = nextGame.url;
@@ -399,6 +385,37 @@ function showManagerRecommendation() {
   if (managerPlayBtn) {
     managerPlayBtn.href = nextGame.url;
   }
+}
+
+function showManagerRecommendation(withFade = false) {
+  const allGames = getAllGames();
+
+  if (allGames.length === 0) return;
+
+  let nextGame = getRandomItem(allGames);
+
+  if (allGames.length > 1 && currentManagerGame) {
+    while (nextGame.url === currentManagerGame.url) {
+      nextGame = getRandomItem(allGames);
+    }
+  }
+
+  if (!withFade) {
+    applyManagerRecommendation(nextGame);
+    return;
+  }
+
+  managerSpeech?.classList.add("is-switching");
+  managerGameCard?.classList.add("is-switching");
+
+  window.setTimeout(() => {
+    applyManagerRecommendation(nextGame);
+
+    requestAnimationFrame(() => {
+      managerSpeech?.classList.remove("is-switching");
+      managerGameCard?.classList.remove("is-switching");
+    });
+  }, 220);
 }
 
 function playRandomGame() {
@@ -579,7 +596,7 @@ if (topRandomBtn) {
 if (managerChangeBtn) {
   managerChangeBtn.addEventListener(
     "click",
-    showManagerRecommendation
+    () => showManagerRecommendation(true)
   );
 }
 

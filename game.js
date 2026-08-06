@@ -351,7 +351,14 @@ const managerComments = [
   "どんなゲームか、試してみませんか？"
 ];
 
+const TYPEWRITER_DELAY = 45;
+const TYPEWRITER_START_DELAY = 100;
+const MANAGER_FADE_DELAY = 220;
+
 let currentManagerGame = null;
+let typewriterTimer = null;
+let typewriterStartTimer = null;
+let isManagerSwitching = false;
 
 function getRandomItem(items) {
   if (!Array.isArray(items) || items.length === 0) {
@@ -362,12 +369,58 @@ function getRandomItem(items) {
   return items[index];
 }
 
-function applyManagerRecommendation(nextGame) {
+function clearTypewriter() {
+  if (typewriterTimer !== null) {
+    window.clearTimeout(typewriterTimer);
+    typewriterTimer = null;
+  }
+
+  if (typewriterStartTimer !== null) {
+    window.clearTimeout(typewriterStartTimer);
+    typewriterStartTimer = null;
+  }
+}
+
+function typeManagerComment(text, instant = false) {
+  if (!managerSpeech) return;
+
+  clearTypewriter();
+
+  if (instant) {
+    managerSpeech.textContent = text;
+    return;
+  }
+
+  managerSpeech.textContent = "";
+  let index = 0;
+
+  typewriterStartTimer = window.setTimeout(() => {
+    function typeNextCharacter() {
+      managerSpeech.textContent = text.slice(0, index + 1);
+      index += 1;
+
+      if (index < text.length) {
+        typewriterTimer = window.setTimeout(
+          typeNextCharacter,
+          TYPEWRITER_DELAY
+        );
+      } else {
+        typewriterTimer = null;
+      }
+    }
+
+    typeNextCharacter();
+  }, TYPEWRITER_START_DELAY);
+}
+
+function applyManagerRecommendation(
+  nextGame,
+  comment,
+  instantText = false
+) {
   currentManagerGame = nextGame;
 
-  if (managerSpeech) {
-    managerSpeech.textContent = getRandomItem(managerComments);
-  }
+  typeManagerComment(comment, instantText);
 
   if (managerGameImage) {
     managerGameImage.src = nextGame.image;
@@ -387,10 +440,12 @@ function applyManagerRecommendation(nextGame) {
   }
 }
 
-function showManagerRecommendation(withFade = false) {
+function getNextManagerGame() {
   const allGames = getAllGames();
 
-  if (allGames.length === 0) return;
+  if (allGames.length === 0) {
+    return null;
+  }
 
   let nextGame = getRandomItem(allGames);
 
@@ -400,22 +455,44 @@ function showManagerRecommendation(withFade = false) {
     }
   }
 
-  if (!withFade) {
-    applyManagerRecommendation(nextGame);
+  return nextGame;
+}
+
+function showManagerRecommendation(withAnimation = false) {
+  const nextGame = getNextManagerGame();
+
+  if (!nextGame) return;
+
+  const nextComment = getRandomItem(managerComments);
+
+  if (!withAnimation) {
+    applyManagerRecommendation(nextGame, nextComment, true);
     return;
   }
 
-  managerSpeech?.classList.add("is-switching");
+  if (isManagerSwitching) return;
+
+  isManagerSwitching = true;
+  clearTypewriter();
+
+  if (managerChangeBtn) {
+    managerChangeBtn.disabled = true;
+  }
+
   managerGameCard?.classList.add("is-switching");
 
   window.setTimeout(() => {
-    applyManagerRecommendation(nextGame);
+    applyManagerRecommendation(nextGame, nextComment, false);
 
     requestAnimationFrame(() => {
-      managerSpeech?.classList.remove("is-switching");
       managerGameCard?.classList.remove("is-switching");
+      isManagerSwitching = false;
+
+      if (managerChangeBtn) {
+        managerChangeBtn.disabled = false;
+      }
     });
-  }, 220);
+  }, MANAGER_FADE_DELAY);
 }
 
 function playRandomGame() {

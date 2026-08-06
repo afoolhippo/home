@@ -208,11 +208,6 @@ body {
   background: #fffdf2;
   border: 3px solid #2b1b2f;
   box-shadow: 3px 3px 0 rgba(43, 27, 47, 0.2);
-  opacity: 1;
-  transform: translateY(0);
-  transition:
-    opacity 0.24s ease,
-    transform 0.24s ease;
 }
 
 .manager-speech::after {
@@ -256,7 +251,6 @@ body {
   filter: drop-shadow(4px 4px 0 rgba(43, 27, 47, 0.28));
 }
 
-.manager-speech.is-switching,
 .manager-game-card.is-switching {
   opacity: 0;
   transform: translateY(5px);
@@ -302,6 +296,11 @@ body {
 .manager-change-btn:hover,
 .manager-change-btn:focus-visible {
   color: #ff006e;
+}
+
+.manager-change-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
 }
 
 @media (max-width: 360px) {

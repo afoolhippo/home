@@ -2,9 +2,8 @@ const games = {
   floor1: {
     id: "floor1",
     title: "🍭 1F キッズゲーム",
-    desc: "みんなでワイワイ遊べる、<br>にぎやかなゲームフロア。",
+    desc: "かんたん操作で気軽に遊べる、<br>みんなのゲームフロア。",
     className: "floor-1",
-    featured: "はみがきしようぜ",
     items: [
       {
         title: "はみがきしようぜ",
@@ -72,9 +71,8 @@ const games = {
   floor2: {
     id: "floor2",
     title: "🌇 2F 放課後ゲーム",
-    desc: "夕焼け、寄り道、放課後。<br>ちょっと不思議なゲームコーナー。",
+    desc: "ちょっと難しくて歯ごたえあり。<br>学生も大人も楽しめる放課後フロア。",
     className: "floor-2",
-    featured: "カバファイト",
     items: [
       {
         title: "バカなカバの大冒険",
@@ -108,7 +106,6 @@ const games = {
     title: "🍜 フードコート",
     desc: "うどんやがめ煮など。<br>お腹がすいたらこちらへ。",
     className: "floor-food",
-    featured: "箱太郎伝説",
     items: [
       {
         title: "がめ煮ソウル",
@@ -136,7 +133,6 @@ const games = {
     title: "🥤 ドリンクバー",
     desc: "のみもの系はこちら。<br>飲みすぎ注意の休憩コーナー。",
     className: "floor-drink",
-    featured: "二日酔いロード",
     items: [
       {
         title: "テトリスコーヒー",
@@ -168,8 +164,6 @@ experiment: {
     "ちょっと変な試作ゲームはこちら。",
 
   className: "floor-experiment",
-
-  featured: "うぱっち",
 
   items: [
       {
@@ -215,6 +209,27 @@ experiment: {
 
 const gameArea = document.getElementById("gameArea");
 const topRandomBtn = document.getElementById("topRandomBtn");
+
+const managerSpeech =
+  document.getElementById("managerSpeech");
+
+const managerGameCard =
+  document.getElementById("managerGameCard");
+
+const managerGameImage =
+  document.getElementById("managerGameImage");
+
+const managerGameTitle =
+  document.getElementById("managerGameTitle");
+
+const managerGameTag =
+  document.getElementById("managerGameTag");
+
+const managerPlayBtn =
+  document.getElementById("managerPlayBtn");
+
+const managerChangeBtn =
+  document.getElementById("managerChangeBtn");
 
 const menuBtn = document.getElementById("menuBtn");
 const closeMenuBtn = document.getElementById("closeMenuBtn");
@@ -302,42 +317,12 @@ function createFloor(section) {
     </div>
   `;
 
-  const featuredGame =
-    section.items.find(
-      game => game.title === section.featured
-    );
-
-  if (featuredGame) {
-    const featured =
-      createGameCard(featuredGame);
-
-    featured.classList.add("featured-card");
-
-    const wrap =
-      document.createElement("div");
-
-    wrap.className = "featured-wrap";
-
-    wrap.innerHTML = `
-      <div class="featured-label">
-        おすすめ
-      </div>
-    `;
-
-    wrap.appendChild(featured);
-    floor.appendChild(wrap);
-  }
-
-  const grid =
-    document.createElement("div");
-
+  const grid = document.createElement("div");
   grid.className = "game-grid";
 
-  section.items
-    .filter(game => game.title !== section.featured)
-    .forEach(game => {
-      grid.appendChild(createGameCard(game));
-    });
+  section.items.forEach(game => {
+    grid.appendChild(createGameCard(game));
+  });
 
   floor.appendChild(grid);
 
@@ -355,6 +340,71 @@ function renderFloors() {
 function getAllGames() {
   return Object.values(games)
     .flatMap(section => section.items);
+}
+
+const managerComments = [
+  "今日はこれで遊んでいきませんか？",
+  "気軽に1ゲーム、いかがですか？",
+  "こちら、最近のお気に入りです。",
+  "短い時間でも楽しめますよ。",
+  "まずはこちらからどうぞ。",
+  "これ、意外と奥が深いんです。",
+  "こっそりおすすめしておきます。",
+  "今日はこの台が気になりますね。",
+  "店長の独断で選びました。",
+  "どんなゲームか、試してみませんか？"
+];
+
+let currentManagerGame = null;
+
+function getRandomItem(items) {
+  if (!Array.isArray(items) || items.length === 0) {
+    return null;
+  }
+
+  const index = Math.floor(Math.random() * items.length);
+  return items[index];
+}
+
+function showManagerRecommendation() {
+  const allGames = getAllGames();
+
+  if (allGames.length === 0) return;
+
+  let nextGame = getRandomItem(allGames);
+
+  if (allGames.length > 1 && currentManagerGame) {
+    while (nextGame.url === currentManagerGame.url) {
+      nextGame = getRandomItem(allGames);
+    }
+  }
+
+  currentManagerGame = nextGame;
+
+  if (managerSpeech) {
+    managerSpeech.textContent = getRandomItem(managerComments);
+  }
+
+  if (managerGameImage) {
+    managerGameImage.src = nextGame.image;
+    managerGameImage.alt = nextGame.title;
+  }
+
+  if (managerGameTitle) {
+    managerGameTitle.textContent = nextGame.title;
+  }
+
+  if (managerGameTag) {
+    managerGameTag.textContent = nextGame.tag;
+  }
+
+  if (managerGameCard) {
+    managerGameCard.href = nextGame.url;
+  }
+
+  if (managerPlayBtn) {
+    managerPlayBtn.href = nextGame.url;
+  }
 }
 
 function playRandomGame() {
@@ -532,6 +582,13 @@ if (topRandomBtn) {
   topRandomBtn.addEventListener("click", playRandomGame);
 }
 
+if (managerChangeBtn) {
+  managerChangeBtn.addEventListener(
+    "click",
+    showManagerRecommendation
+  );
+}
+
 if (closeBoardBtn) {
   closeBoardBtn.addEventListener("click", closeBoard);
 }
@@ -575,4 +632,5 @@ if (sendBoardBtn) {
 }
 
 renderFloors();
+showManagerRecommendation();
 loadRecentRecords();

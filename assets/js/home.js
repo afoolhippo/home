@@ -138,17 +138,17 @@ function createGameCard(game) {
 
   card.className = "game-card";
   card.href = game.url;
+  card.setAttribute(
+    "aria-label",
+    `${game.title}で遊ぶ`
+  );
 
   card.innerHTML = `
-    <img src="${game.image}" alt="${game.title}">
-
-    <div class="game-title">
-      ${game.title}
-    </div>
-
-    <div class="game-tag">
-      ${game.tag}
-    </div>
+    <img
+      src="${escapeHtml(game.image)}"
+      alt="${escapeHtml(game.title)}"
+      loading="lazy"
+    >
   `;
 
   return card;

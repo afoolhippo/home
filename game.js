@@ -1,71 +1,10 @@
-const games = {
+const FLOOR_CONFIG = {
   floor1: {
     id: "floor1",
     title: "🍭 1F キッズゲーム",
     desc: "かんたん操作で気軽に遊べる、<br>みんなのゲームフロア。",
     className: "floor-1",
-    items: [
-      {
-        title: "はみがきしようぜ",
-        image: "game8.png",
-        url: "https://afoolhippo.github.io/game8/",
-        tag: "早押し"
-      },
-      {
-        title: "みんなでそっか！",
-        image: "game2.png",
-        url: "https://afoolhippo.github.io/game2/",
-        tag: "音ゲー"
-      },
-      {
-        title: "苗字苗字yeah",
-        image: "game9.png",
-        url: "https://afoolhippo.github.io/game9/",
-        tag: "カルタ"
-      },
-      {
-        title: "BABY BABY BAMBOO",
-        image: "game5.png",
-        url: "https://afoolhippo.github.io/game5/",
-        tag: "早押し"
-      },
-      {
-        title: "サルトリイバラ",
-        image: "game10.png",
-        url: "https://afoolhippo.github.io/game10/",
-        tag: "トゲ避け"
-      },
-      {
-        title: "FISHING BOY",
-        image: "game7.png",
-        url: "https://afoolhippo.github.io/game7/",
-        tag: "釣り"
-      },
-      {
-        title: "UFOを見た！",
-        image: "game21.png",
-        url: "https://afoolhippo.github.io/game21/",
-        tag: "早押し"
-      },
-      {
-        title: "Wifiないと生きていけない",
-        image: "game29.png",
-        url: "https://afoolhippo.github.io/game29/",
-        tag: "ブロック崩し"
-      },
-      {
-        title: "石炭掘って",
-        image: "game16.png",
-        url: "https://afoolhippo.github.io/game16/",
-        tag: "地下スクロール"
-      },
-      {
-        title: "庭師 de カット",
-        image: "game18.png",
-        url: "https://afoolhippo.github.io/game18/",
-        tag: "枝切り"
-      }
-    ]
+    floorName: "キッズゲーム"
   },
 
   floor2: {
@@ -73,32 +12,7 @@ const games = {
     title: "🌇 2F 放課後ゲーム",
     desc: "ちょっと難しくて歯ごたえあり。<br>学生も大人も楽しめる放課後フロア。",
     className: "floor-2",
-    items: [
-      {
-        title: "バカなカバの大冒険",
-        image: "game1.png",
-        url: "https://afoolhippo.github.io/hippogame/",
-        tag: "ＲＰＧ"
-      },
-      {
-        title: "放課後カバメモリアル",
-        image: "game15.png",
-        url: "https://afoolhippo.github.io/game15/",
-        tag: "恋愛系？"
-      },
-      {
-        title: "ジャニーメリージュリー",
-        image: "game13.png",
-        url: "https://afoolhippo.github.io/game13/",
-        tag: "スロット"
-      },
-      {
-        title: "カバファイト",
-        image: "game14.png",
-        url: "https://afoolhippo.github.io/game14/",
-        tag: "格闘ゲーム"
-      }
-    ]
+    floorName: "放課後ゲーム"
   },
 
   food: {
@@ -106,26 +20,7 @@ const games = {
     title: "🍜 フードコート",
     desc: "うどんやがめ煮など。<br>お腹がすいたらこちらへ。",
     className: "floor-food",
-    items: [
-      {
-        title: "がめ煮ソウル",
-        image: "game3.png",
-        url: "https://afoolhippo.github.io/game3/",
-        tag: "具材集め"
-      },
-      {
-        title: "ポキポキきゅうり",
-        image: "game4.png",
-        url: "https://afoolhippo.github.io/game4/",
-        tag: "反射神経"
-      },
-      {
-        title: "箱太郎伝説",
-        image: "game19.png",
-        url: "https://afoolhippo.github.io/game19/",
-        tag: "うどんづくり"
-      }
-    ]
+    floorName: "フードコート"
   },
 
   drink: {
@@ -133,79 +28,55 @@ const games = {
     title: "🥤 ドリンクバー",
     desc: "のみもの系はこちら。<br>飲みすぎ注意の休憩コーナー。",
     className: "floor-drink",
-    items: [
-      {
-        title: "テトリスコーヒー",
-        image: "game12.png",
-        url: "https://afoolhippo.github.io/game12/",
-        tag: "謎パズル"
-      },
-      {
-        title: "タポタポオレンジ",
-        image: "game11.png",
-        url: "https://afoolhippo.github.io/game11/",
-        tag: "我慢"
-      },
-      {
-        title: "二日酔いロード",
-        image: "game6.png",
-        url: "https://afoolhippo.github.io/game6/",
-        tag: "電柱回避"
-      }
-    ]
+    floorName: "ドリンクバー"
   },
 
-experiment: {
-  id: "experiment",
+  experiment: {
+    id: "experiment",
+    title: "🧪 実験場",
+    desc: "ちょっと変な試作ゲームはこちら。",
+    className: "floor-experiment",
+    floorName: "実験場"
+  }
+};
 
-  title: "🧪 実験場",
-
-  desc:
-    "ちょっと変な試作ゲームはこちら。",
-
-  className: "floor-experiment",
-
-  items: [
-      {
-        title: "うぱっち",
-        image: "game22.png",
-        url: "https://afoolhippo.github.io/game22/",
-        tag: "育成"
-      },
-      {
-        title: "夕暮れメダル",
-        image: "game17.png",
-        url: "https://afoolhippo.github.io/game17/",
-        tag: "メダル"
-      },
-      {
-        title: "セコムボーイ",
-        image: "game24.png",
-        url: "https://afoolhippo.github.io/game24/",
-        tag: "巡回警備"
-      },
-      {
-        title: "雨漏り酒盛り",
-        image: "game25.png",
-        url: "https://afoolhippo.github.io/game25/",
-        tag: "防水対策"
-      },
-      {
-        title: "カメカメライフ",
-        image: "game26.png",
-        url: "https://afoolhippo.github.io/game26/",
-        tag: "ひたすら歩き"
-      },
-      {
-        title: "ホームパーティ",
-        image: "game27.png",
-        url: "https://afoolhippo.github.io/game27/",
-        tag: "空気読み"
-      }
-]
+if (!Array.isArray(window.GAME_CATALOG)) {
+  throw new Error(
+    "GAME_CATALOGを読み込めません。game-catalog.jsをgame.jsより先に読み込んでください。"
+  );
 }
 
-};
+const publishedGames = window.GAME_CATALOG.filter(
+  game => game.status === "公開済"
+);
+
+const games = Object.fromEntries(
+  Object.entries(FLOOR_CONFIG).map(
+    ([floorKey, floorConfig]) => {
+      const items = publishedGames
+        .filter(
+          game => game.floor === floorConfig.floorName
+        )
+        .map(game => ({
+          title: game.title,
+          image: game.image,
+          url: game.url,
+          tag: game.genre
+        }));
+
+      return [
+        floorKey,
+        {
+          id: floorConfig.id,
+          title: floorConfig.title,
+          desc: floorConfig.desc,
+          className: floorConfig.className,
+          items
+        }
+      ];
+    }
+  )
+);
 
 const gameArea = document.getElementById("gameArea");
 const topRandomBtn = document.getElementById("topRandomBtn");

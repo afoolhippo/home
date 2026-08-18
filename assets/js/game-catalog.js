@@ -1,8 +1,9 @@
 /**
- * カバゲーセン共通ゲーム台帳（公開済みゲーム）
+ * カバゲーセン共通ゲーム台帳
  *
  * トップページ・ゲーム検索機・ランキングページから共通で利用する。
- * ゲームの追加・公開状態・フロア・分類・ランキング設定は、この配列で管理する。
+ * 公開画面には status が「公開済」のゲームだけが表示される。
+ * ゲーム情報の正式な管理元はExcelのゲーム台帳とする。
  */
 const GAME_CATALOG = Object.freeze([
   {
@@ -215,6 +216,17 @@ const GAME_CATALOG = Object.freeze([
     supabaseId: "game_hakotarou"
   },
   {
+    no: 20,
+    title: "歪なダンス",
+    status: "未公開",
+    floor: "実験場",
+    genre: "音ゲー",
+    url: "https://afoolhippo.github.io/game20/",
+    image: "./assets/images/games/game20.png",
+    rankingEnabled: true,
+    supabaseId: "game20"
+  },
+  {
     no: 21,
     title: "UFOを見た！",
     status: "公開済",
@@ -233,6 +245,17 @@ const GAME_CATALOG = Object.freeze([
     genre: "クイズ・観察",
     url: "https://afoolhippo.github.io/game22/",
     image: "./assets/images/games/game22.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 23,
+    title: "カジュアルバー",
+    status: "未公開",
+    floor: "ドリンクバー",
+    genre: "ADV",
+    url: "https://afoolhippo.github.io/game23/",
+    image: "./assets/images/games/game23.png",
     rankingEnabled: false,
     supabaseId: null
   },
@@ -281,6 +304,17 @@ const GAME_CATALOG = Object.freeze([
     supabaseId: null
   },
   {
+    no: 28,
+    title: "ペタペタ付箋",
+    status: "未公開",
+    floor: "放課後ゲーム",
+    genre: "アクション",
+    url: "https://afoolhippo.github.io/game28/",
+    image: "./assets/images/games/game28.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
     no: 29,
     title: "Wifiないと生きていけない",
     status: "公開済",
@@ -290,6 +324,446 @@ const GAME_CATALOG = Object.freeze([
     image: "./assets/images/games/game29.png",
     rankingEnabled: true,
     supabaseId: "game29"
+  },
+  {
+    no: 30,
+    title: "放課後つみつみ消しゴム",
+    status: "未公開",
+    floor: "放課後ゲーム",
+    genre: "落ち物",
+    url: "https://afoolhippo.github.io/game30/",
+    image: "./assets/images/games/game30.png",
+    rankingEnabled: true,
+    supabaseId: "game30"
+  },
+  {
+    no: 31,
+    title: "カバカード",
+    status: "未公開",
+    floor: "放課後ゲーム",
+    genre: "対戦",
+    url: "https://afoolhippo.github.io/game31/",
+    image: "./assets/images/games/game31.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 32,
+    title: "カバ合戦",
+    status: "未公開",
+    floor: "放課後ゲーム",
+    genre: "対戦",
+    url: "https://afoolhippo.github.io/game32/",
+    image: "./assets/images/games/game32.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 33,
+    title: "カバピンボール",
+    status: "未公開",
+    floor: "放課後ゲーム",
+    genre: "アクション",
+    url: "https://afoolhippo.github.io/game33/",
+    image: "./assets/images/games/game33.png",
+    rankingEnabled: true,
+    supabaseId: "game33"
+  },
+  {
+    no: 34,
+    title: "ドリンクまぜまぜ事件",
+    status: "未公開",
+    floor: "ドリンクバー",
+    genre: "クイズ・観察",
+    url: "https://afoolhippo.github.io/game34/",
+    image: "./assets/images/games/game34.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 35,
+    title: "カバキャッチャー",
+    status: "未公開",
+    floor: "キッズゲーム",
+    genre: "アクション",
+    url: "https://afoolhippo.github.io/game35/",
+    image: "./assets/images/games/game35.png",
+    rankingEnabled: true,
+    supabaseId: "game35"
+  },
+  {
+    no: 36,
+    title: "カバ四駆",
+    status: "未公開",
+    floor: "放課後ゲーム",
+    genre: "対戦",
+    url: "https://afoolhippo.github.io/game36/",
+    image: "./assets/images/games/game36.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 37,
+    title: "無限えだまめ",
+    status: "未公開",
+    floor: "フードコート",
+    genre: "反射神経",
+    url: "https://afoolhippo.github.io/game37/",
+    image: "./assets/images/games/game37.png",
+    rankingEnabled: true,
+    supabaseId: "game37"
+  },
+  {
+    no: 38,
+    title: "かき氷じいさん",
+    status: "未公開",
+    floor: "フードコート",
+    genre: "ADV",
+    url: "https://afoolhippo.github.io/game38/",
+    image: "./assets/images/games/game38.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 39,
+    title: "カバ島",
+    status: "未公開",
+    floor: "放課後ゲーム",
+    genre: "対戦",
+    url: "https://afoolhippo.github.io/game39/",
+    image: "./assets/images/games/game39.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 40,
+    title: "放課後消しピンバトル",
+    status: "未公開",
+    floor: "放課後ゲーム",
+    genre: "対戦",
+    url: "https://afoolhippo.github.io/game40/",
+    image: "./assets/images/games/game40.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 41,
+    title: "スーパーかばや",
+    status: "未公開",
+    floor: "フードコート",
+    genre: "クイズ・観察",
+    url: "https://afoolhippo.github.io/game41/",
+    image: "./assets/images/games/game41.png",
+    rankingEnabled: true,
+    supabaseId: "game41"
+  },
+  {
+    no: 42,
+    title: "てがきタイヤ",
+    status: "未公開",
+    floor: "実験場",
+    genre: "クイズ・観察",
+    url: "https://afoolhippo.github.io/game42/",
+    image: "./assets/images/games/game42.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 43,
+    title: "放課後すもう大会",
+    status: "未公開",
+    floor: "放課後ゲーム",
+    genre: "対戦",
+    url: "https://afoolhippo.github.io/game43/",
+    image: "./assets/images/games/game43.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 44,
+    title: "むしむしスナップ",
+    status: "未公開",
+    floor: "キッズゲーム",
+    genre: "クイズ・観察",
+    url: "https://afoolhippo.github.io/game44/",
+    image: "./assets/images/games/game44.png",
+    rankingEnabled: true,
+    supabaseId: "game44"
+  },
+  {
+    no: 45,
+    title: "カバチロ",
+    status: "未公開",
+    floor: "放課後ゲーム",
+    genre: "アクション",
+    url: "https://afoolhippo.github.io/game45/",
+    image: "./assets/images/games/game45.png",
+    rankingEnabled: true,
+    supabaseId: "game45"
+  },
+  {
+    no: 46,
+    title: "カバブラザーズ",
+    status: "未公開",
+    floor: "放課後ゲーム",
+    genre: "横スクロール",
+    url: "https://afoolhippo.github.io/game46/",
+    image: "./assets/images/games/game46.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 47,
+    title: "アスファルトあつあつ",
+    status: "未公開",
+    floor: "キッズゲーム",
+    genre: "横スクロール",
+    url: "https://afoolhippo.github.io/game47/",
+    image: "./assets/images/games/game47.png",
+    rankingEnabled: true,
+    supabaseId: "game47"
+  },
+  {
+    no: 48,
+    title: "カバピンポン",
+    status: "未公開",
+    floor: "放課後ゲーム",
+    genre: "対戦",
+    url: "https://afoolhippo.github.io/game48/",
+    image: "./assets/images/games/game48.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 49,
+    title: "オムオムオムライス",
+    status: "未公開",
+    floor: "フードコート",
+    genre: "アクション",
+    url: "https://afoolhippo.github.io/game49/",
+    image: "./assets/images/games/game49.png",
+    rankingEnabled: true,
+    supabaseId: "game49"
+  },
+  {
+    no: 50,
+    title: "ドドンと花火",
+    status: "未公開",
+    floor: "放課後ゲーム",
+    genre: "タイミング",
+    url: "https://afoolhippo.github.io/game50/",
+    image: "./assets/images/games/game50.png",
+    rankingEnabled: true,
+    supabaseId: "game50"
+  },
+  {
+    no: 51,
+    title: "噛み合わない",
+    status: "未公開",
+    floor: "実験場",
+    genre: "クイズ・観察",
+    url: "https://afoolhippo.github.io/game51/",
+    image: "./assets/images/games/game51.png",
+    rankingEnabled: true,
+    supabaseId: "game51"
+  },
+  {
+    no: 52,
+    title: "タコキャッチ！",
+    status: "未公開",
+    floor: "キッズゲーム",
+    genre: "反射神経",
+    url: "https://afoolhippo.github.io/game52/",
+    image: "./assets/images/games/game52.png",
+    rankingEnabled: true,
+    supabaseId: "game52"
+  },
+  {
+    no: 53,
+    title: "ねこのまち",
+    status: "未公開",
+    floor: "放課後ゲーム",
+    genre: "RPG風",
+    url: "https://afoolhippo.github.io/game53/",
+    image: "./assets/images/games/game53.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 54,
+    title: "おそうじライフ",
+    status: "未公開",
+    floor: "キッズゲーム",
+    genre: "落ち物",
+    url: "https://afoolhippo.github.io/game54/",
+    image: "./assets/images/games/game54.png",
+    rankingEnabled: true,
+    supabaseId: "game54"
+  },
+  {
+    no: 55,
+    title: "水鉄砲バトル",
+    status: "未公開",
+    floor: "放課後ゲーム",
+    genre: "対戦",
+    url: "https://afoolhippo.github.io/game55/",
+    image: "./assets/images/games/game55.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 56,
+    title: "早切りトマト",
+    status: "未公開",
+    floor: "フードコート",
+    genre: "反射神経",
+    url: "https://afoolhippo.github.io/game56/",
+    image: "./assets/images/games/game56.png",
+    rankingEnabled: true,
+    supabaseId: "game56"
+  },
+  {
+    no: 57,
+    title: "生姜カルタ",
+    status: "未公開",
+    floor: "フードコート",
+    genre: "反射神経",
+    url: "https://afoolhippo.github.io/game57/",
+    image: "./assets/images/games/game57.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 58,
+    title: "からあげ今だ！",
+    status: "未公開",
+    floor: "フードコート",
+    genre: "タイミング",
+    url: "https://afoolhippo.github.io/game58/",
+    image: "./assets/images/games/game58.png",
+    rankingEnabled: true,
+    supabaseId: "game58"
+  },
+  {
+    no: 59,
+    title: "ミョウガ。",
+    status: "未公開",
+    floor: "フードコート",
+    genre: "タイミング",
+    url: "https://afoolhippo.github.io/game59/",
+    image: "./assets/images/games/game59.png",
+    rankingEnabled: true,
+    supabaseId: "game59"
+  },
+  {
+    no: 60,
+    title: "小豆洗い",
+    status: "未公開",
+    floor: "フードコート",
+    genre: "反射神経",
+    url: "https://afoolhippo.github.io/game60/",
+    image: "./assets/images/games/game60.png",
+    rankingEnabled: true,
+    supabaseId: "game60"
+  },
+  {
+    no: 61,
+    title: "なんかちがう。",
+    status: "未公開",
+    floor: "キッズゲーム",
+    genre: "クイズ・観察",
+    url: "https://afoolhippo.github.io/game61/",
+    image: "./assets/images/games/game61.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 62,
+    title: "ぼやぼやクイズ",
+    status: "未公開",
+    floor: "キッズゲーム",
+    genre: "クイズ・観察",
+    url: "https://afoolhippo.github.io/game62/",
+    image: "./assets/images/games/game62.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 63,
+    title: "ばけたぬき！",
+    status: "未公開",
+    floor: "キッズゲーム",
+    genre: "クイズ・観察",
+    url: "https://afoolhippo.github.io/game63/",
+    image: "./assets/images/games/game63.png",
+    rankingEnabled: true,
+    supabaseId: "game63"
+  },
+  {
+    no: 64,
+    title: "カバサーフィン",
+    status: "未公開",
+    floor: "放課後ゲーム",
+    genre: "アクション",
+    url: "https://afoolhippo.github.io/game64/",
+    image: "./assets/images/games/game64.png",
+    rankingEnabled: true,
+    supabaseId: "game64"
+  },
+  {
+    no: 65,
+    title: "ふでばこバトル",
+    status: "未公開",
+    floor: "放課後ゲーム",
+    genre: "RPG風",
+    url: "https://afoolhippo.github.io/game65/",
+    image: "./assets/images/games/game65.png",
+    rankingEnabled: false,
+    supabaseId: null
+  },
+  {
+    no: 66,
+    title: "決裁ポン！",
+    status: "公開済",
+    floor: "実験場",
+    genre: "反射神経",
+    url: "https://afoolhippo.github.io/game66/",
+    image: "./assets/images/games/game66.png",
+    rankingEnabled: true,
+    supabaseId: "game66"
+  },
+  {
+    no: 67,
+    title: "カババーガー",
+    status: "未公開",
+    floor: "フードコート",
+    genre: "タイミング",
+    url: "https://afoolhippo.github.io/game67/",
+    image: "./assets/images/games/game67.png",
+    rankingEnabled: true,
+    supabaseId: "game67"
+  },
+  {
+    no: 68,
+    title: "エビチリ！",
+    status: "未公開",
+    floor: "フードコート",
+    genre: "アクション",
+    url: "https://afoolhippo.github.io/game68/",
+    image: "./assets/images/games/game68.png",
+    rankingEnabled: true,
+    supabaseId: "game68"
+  },
+  {
+    no: 69,
+    title: "ひつじ多すぎ",
+    status: "未公開",
+    floor: "実験場",
+    genre: "クイズ・観察",
+    url: "https://afoolhippo.github.io/game69/",
+    image: "./assets/images/games/game69.png",
+    rankingEnabled: false,
+    supabaseId: null
   }
 ]);
 

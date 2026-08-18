@@ -1,0 +1,258 @@
+if (!Array.isArray(window.GAME_CATALOG)) {
+  throw new Error(
+    "GAME_CATALOGを読み込めません。game-catalog.jsをrecord.jsより先に読み込んでください。"
+  );
+}
+
+const GAME_OPTIONS = [
+  {
+    id: "all",
+    title: "すべてのゲーム",
+    mode: "timeline"
+  },
+
+  ...window.GAME_CATALOG
+    .filter(
+      game =>
+        game.status === "公開済" &&
+        game.rankingEnabled === true &&
+        game.supabaseId
+    )
+    .map(game => ({
+      id: game.supabaseId,
+      title: game.title,
+      mode: "ranking"
+    }))
+];
+
+const gameSelect =
+  document.getElementById("gameSelect");
+
+const rankingTitle =
+  document.getElementById("rankingTitle");
+
+const rankingList =
+  document.getElementById("rankingList");
+
+function escapeHtml(text) {
+  return String(text ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function setupGameSelect() {
+  gameSelect.innerHTML = "";
+
+  GAME_OPTIONS.forEach(game => {
+    const option =
+      document.createElement("option");
+
+    option.value =
+      game.id;
+
+    option.textContent =
+      game.title;
+
+    gameSelect.appendChild(option);
+  });
+
+  gameSelect.addEventListener(
+    "change",
+    () => {
+      loadRecords(gameSelect.value);
+    }
+  );
+}
+
+function getRankMark(index) {
+  if (index === 0) return "🥇";
+  if (index === 1) return "🥈";
+  if (index === 2) return "🥉";
+
+  return `${index + 1}位`;
+}
+
+function formatDate(value) {
+  if (!value) return "";
+
+  const date =
+    new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return "";
+  }
+
+  const y =
+    date.getFullYear();
+
+  const m =
+    date.getMonth() + 1;
+
+  const d =
+    date.getDate();
+
+  const hh =
+    String(date.getHours()).padStart(2, "0");
+
+  const mm =
+    String(date.getMinutes()).padStart(2, "0");
+
+  return `${y}.${m}.${d} ${hh}:${mm}`;
+}
+
+async function loadRecords(gameId) {
+  rankingList.innerHTML = `
+    <div class="loading-card">
+      記録を読み込み中...
+    </div>
+  `;
+
+  const currentGame =
+    GAME_OPTIONS.find(
+      game => game.id === gameId
+    );
+
+  if (!currentGame) {
+    rankingList.innerHTML = `
+      <div class="empty-card">
+        ゲーム情報が見つかりません。
+      </div>
+    `;
+    return;
+  }
+
+  if (currentGame.mode === "timeline") {
+    rankingTitle.textContent =
+      "🏆 最近の記録";
+  } else {
+    rankingTitle.textContent =
+      `🏆 ${currentGame.title} ランキング`;
+  }
+
+  let query =
+    kabaDb
+      .from("kaba_scores")
+      .select("*");
+
+  if (currentGame.mode === "timeline") {
+    query =
+      query
+        .order("created_at", { ascending: false })
+        .limit(50);
+  } else {
+    query =
+      query
+        .eq("game_id", currentGame.id)
+        .order("score", { ascending: false })
+        .limit(30);
+  }
+
+  const { data, error } =
+    await query;
+
+  if (error) {
+    console.error(error);
+
+    rankingList.innerHTML = `
+      <div class="empty-card">
+        記録を読み込めませんでした。<br>
+        Supabaseの設定を確認してください。
+      </div>
+    `;
+
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    rankingList.innerHTML = `
+      <div class="empty-card">
+        まだ記録がありません。<br>
+        最初の記録をねらおう！
+      </div>
+    `;
+
+    return;
+  }
+
+  if (currentGame.mode === "timeline") {
+    renderTimeline(data);
+  } else {
+    renderRanking(data);
+  }
+}
+
+function renderTimeline(records) {
+  rankingList.innerHTML =
+    records.map(record => `
+      <article class="rank-card">
+        <div class="rank-head">
+          <div class="rank-place">
+            🕒
+          </div>
+
+          <div class="rank-score">
+            ${escapeHtml(record.score)}てん
+          </div>
+        </div>
+
+        <div class="rank-name">
+          ${escapeHtml(record.rank_title)}
+        </div>
+
+        <div class="rank-title-text">
+          ${escapeHtml(record.game_title)}
+          /
+          ${escapeHtml(record.nickname)}
+        </div>
+
+        <div class="rank-date">
+          ${escapeHtml(formatDate(record.created_at))}
+        </div>
+      </article>
+    `).join("");
+}
+
+function renderRanking(records) {
+  rankingList.innerHTML =
+    records.map((record, index) => {
+      const rankClass =
+        index < 3
+          ? `rank-${index + 1}`
+          : "";
+
+      return `
+        <article class="rank-card ${rankClass}">
+          <div class="rank-head">
+            <div class="rank-place">
+              ${getRankMark(index)}
+            </div>
+
+            <div class="rank-score">
+              ${escapeHtml(record.score)}てん
+            </div>
+          </div>
+
+          <div class="rank-name">
+            ${escapeHtml(record.nickname)}
+          </div>
+
+          <div class="rank-title-text">
+            ${escapeHtml(record.rank_title)}
+          </div>
+
+          <div class="rank-date">
+            ${escapeHtml(formatDate(record.created_at))}
+          </div>
+        </article>
+      `;
+    }).join("");
+}
+
+setupGameSelect();
+
+if (GAME_OPTIONS.length > 0) {
+  loadRecords(GAME_OPTIONS[0].id);
+}

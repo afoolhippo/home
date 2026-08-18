@@ -10,92 +10,31 @@ const kabaDb =
     SUPABASE_ANON_KEY
   );
 
-/*
-  今後ゲームを増やす時は、
-  この配列に追加するだけでOK。
+if (!Array.isArray(window.GAME_CATALOG)) {
+  throw new Error(
+    "GAME_CATALOGを読み込めません。game-catalog.jsをrecord.jsより先に読み込んでください。"
+  );
+}
 
-  id は Supabase の game_id と一致させる。
-  title は画面表示用。
-*/
 const GAME_OPTIONS = [
   {
     id: "all",
     title: "すべてのゲーム",
-    icon: "🕒",
     mode: "timeline"
   },
-  {
-    id: "game2",
-    title: "みんなでそっか！",
-    icon: "🕺",
-    mode: "ranking"
-  },
-　{
-    id: "game3",
-    title: "がめ煮ソウル",
-    icon: "🍲",
-    mode: "ranking"
-  },
-　{
-    id: "game4",
-    title: "ポキポキきゅうり",
-    icon: "🥒",
-    mode: "ranking"
-  }, 
-　{
-    id: "game5",
-    title: "BABY BABY BAMBOO",
-    icon: "🎋",
-    mode: "ranking"
-  }, 
-　{
-    id: "game9",
-    title: "苗字苗字yeah",
-    icon: "🏷️",
-    mode: "ranking"
-  }, 
-  {
-    id: "game8",
-    title: "はみがきしようぜ！",
-    icon: "🪥",
-    mode: "ranking"
-  },
-  {
-    id: "game13",
-    title: "ジャニーメリージュリー",
-    icon: "🎰",
-    mode: "ranking"
-  },
-  {
-    id: "game16",
-    title: "石炭掘って",
-    icon: "⛏",
-    mode: "ranking"
-  },
-  {
-    id: "game18",
-    title: "庭師deカット",
-    icon: "🌳",
-    mode: "ranking"
-  },
-  {
-    id: "game21",
-    title: "UFOを見た！",
-    icon: "🛸",
-    mode: "ranking"
-  },
-  {
-    id: "game29",
-    title: "Wifiないと生きていけない",
-    icon: "📶",
-    mode: "ranking"
-  },
-  {
-    id: "game_hakotarou",
-    title: "箱太郎伝説",
-    icon: "🍜",
-    mode: "ranking"
-  }
+
+  ...window.GAME_CATALOG
+    .filter(
+      game =>
+        game.status === "公開済" &&
+        game.rankingEnabled === true &&
+        game.supabaseId
+    )
+    .map(game => ({
+      id: game.supabaseId,
+      title: game.title,
+      mode: "ranking"
+    }))
 ];
 
 const gameSelect =
@@ -199,10 +138,10 @@ async function loadRecords(gameId) {
 
   if (currentGame.mode === "timeline") {
     rankingTitle.textContent =
-      `${currentGame.icon} 最近の記録`;
+      "🏆 最近の記録";
   } else {
     rankingTitle.textContent =
-      `${currentGame.icon} ${currentGame.title} ランキング`;
+      `🏆 ${currentGame.title} ランキング`;
   }
 
   let query =

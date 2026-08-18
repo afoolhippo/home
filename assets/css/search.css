@@ -10,7 +10,6 @@ html {
 
 body {
   margin: 0;
-  padding-top: 62px;
   font-family: "DotGothic16", sans-serif;
   color: #2b1b2f;
   background: #2b1b2f;
@@ -25,35 +24,10 @@ button {
   font-family: inherit;
 }
 
-.search-top-bar {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  z-index: 1000;
-  width: 100%;
-  max-width: 480px;
-  padding: 8px;
-  transform: translateX(-50%);
-  background: #2b1b2f;
-}
-
-.lobby-link {
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #2b1b2f;
-  font-size: 0.78rem;
-  text-decoration: none;
-  background: #fffdf2;
-  border: 3px solid #2b1b2f;
-  box-shadow: 3px 3px 0 #ff4b8b;
-}
-
 .search-page {
   width: 100%;
   max-width: 480px;
-  min-height: calc(100vh - 62px);
+  min-height: 100vh;
   margin: 0 auto;
   padding: 22px 14px 36px;
   background:
@@ -64,24 +38,18 @@ button {
   text-align: center;
 }
 
-.search-machine-image {
-  display: block;
-  width: min(76%, 300px);
-  height: auto;
-  margin: 0 auto 12px;
-  image-rendering: pixelated;
-  filter: drop-shadow(5px 6px 0 rgba(43, 27, 47, 0.25));
+.search-title {
+  margin: 4px 0 12px;
+  font-size: 1.45rem;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.55);
 }
 
 .search-lead {
-  display: inline-block;
-  margin: 0 0 18px;
-  padding: 9px 16px;
-  font-size: 0.92rem;
-  line-height: 1.55;
-  background: #fffdf2;
-  border: 3px solid #2b1b2f;
-  box-shadow: 3px 3px 0 rgba(43, 27, 47, 0.25);
+  margin: 0 0 20px;
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
 .genre-section {
@@ -193,18 +161,6 @@ button {
 .search-footer a {
   color: #fff;
   font-size: 0.78rem;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }
 
 @media (min-width: 430px) {

@@ -526,29 +526,6 @@ body {
   aspect-ratio: 5 / 4;
   object-fit: cover;
   image-rendering: pixelated;
-  border-bottom: 4px solid #2b1b2f;
-}
-
-
-.game-title {
-  min-height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px 4px 2px;
-  font-size: 0.76rem;
-  line-height: 1.2;
-  text-align: center;
-}
-
-.game-tag {
-  display: inline-block;
-  margin: 1px 0 7px 12px;
-  padding: 2px 7px;
-  font-size: 0.56rem;
-  color: #2b1b2f;
-  background: #ffe27a;
-  border: 1px solid #2b1b2f;
 }
 
 /* フッター */

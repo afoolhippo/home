@@ -218,7 +218,7 @@ const GAME_CATALOG = Object.freeze([
   {
     no: 20,
     title: "歪なダンス",
-    status: "未公開",
+    status: "公開済",
     floor: "実験場",
     genre: "音ゲー",
     url: "https://afoolhippo.github.io/game20/",

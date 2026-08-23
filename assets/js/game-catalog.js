@@ -306,7 +306,7 @@ const GAME_CATALOG = Object.freeze([
   {
     no: 28,
     title: "ペタペタ付箋",
-    status: "未公開",
+    status: "公開済",
     floor: "放課後ゲーム",
     genre: "アクション",
     url: "https://afoolhippo.github.io/game28/",

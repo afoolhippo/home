@@ -251,7 +251,7 @@ const GAME_CATALOG = Object.freeze([
   {
     no: 23,
     title: "カジュアルバー",
-    status: "未公開",
+    status: "公開済",
     floor: "ドリンクバー",
     genre: "ADV",
     url: "https://afoolhippo.github.io/game23/",

@@ -405,7 +405,7 @@ const GAME_CATALOG = Object.freeze([
   {
     no: 37,
     title: "無限えだまめ",
-    status: "未公開",
+    status: "公開済",
     floor: "フードコート",
     genre: "反射神経",
     url: "https://afoolhippo.github.io/game37/",

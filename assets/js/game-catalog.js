@@ -372,7 +372,7 @@ const GAME_CATALOG = Object.freeze([
   {
     no: 34,
     title: "ドリンクまぜまぜ事件",
-    status: "未公開",
+    status: "公開済",
     floor: "ドリンクバー",
     genre: "クイズ・観察",
     url: "https://afoolhippo.github.io/game34/",

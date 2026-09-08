@@ -764,6 +764,17 @@ const GAME_CATALOG = Object.freeze([
     image: "./assets/images/games/game69.png",
     rankingEnabled: false,
     supabaseId: null
+  },
+  {
+    no: 71,
+    title: "カバ・ナイト・ラジオ",
+    status: "公開済",
+    floor: "実験場",
+    genre: "ADV",
+    url: "https://afoolhippo.github.io/game71/",
+    image: "./assets/images/games/game71.png",
+    rankingEnabled: false,
+    supabaseId: null
   }
 ]);
 

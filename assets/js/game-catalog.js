@@ -427,7 +427,7 @@ const GAME_CATALOG = Object.freeze([
   {
     no: 39,
     title: "カバ島",
-    status: "未公開",
+    status: "公開済",
     floor: "放課後ゲーム",
     genre: "対戦",
     url: "https://afoolhippo.github.io/game39/",

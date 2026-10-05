@@ -377,8 +377,8 @@ const GAME_CATALOG = Object.freeze([
     genre: "クイズ・観察",
     url: "https://afoolhippo.github.io/game34/",
     image: "./assets/images/games/game34.png",
-    rankingEnabled: false,
-    supabaseId: null
+    rankingEnabled: true,
+    supabaseId: "game34"
   },
   {
     no: 35,
@@ -775,6 +775,17 @@ const GAME_CATALOG = Object.freeze([
     image: "./assets/images/games/game71.png",
     rankingEnabled: false,
     supabaseId: null
+  },
+  {
+    no: 72,
+    title: "フライングヒッポ",
+    status: "公開済",
+    floor: "キッズゲーム",
+    genre: "アクション",
+    url: "https://afoolhippo.github.io/game72/",
+    image: "./assets/images/games/game72.png",
+    rankingEnabled: true,
+    supabaseId: "game72"
   }
 ]);
 

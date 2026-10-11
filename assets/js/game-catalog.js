@@ -786,6 +786,17 @@ const GAME_CATALOG = Object.freeze([
     image: "./assets/images/games/game72.png",
     rankingEnabled: true,
     supabaseId: "game72"
+  },
+  {
+    no: 73,
+    title: "ジンライムください！",
+    status: "公開済",
+    floor: "ドリンクバー",
+    genre: "タイミング",
+    url: "https://afoolhippo.github.io/game73/",
+    image: "./assets/images/games/game73.png",
+    rankingEnabled: true,
+    supabaseId: "game73"
   }
 ]);
 

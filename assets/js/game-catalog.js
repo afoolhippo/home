@@ -797,6 +797,17 @@ const GAME_CATALOG = Object.freeze([
     image: "./assets/images/games/game73.png",
     rankingEnabled: true,
     supabaseId: "game73"
+  },
+  {
+    no: 74,
+    title: "宿題反対！",
+    status: "公開済",
+    floor: "キッズゲーム",
+    genre: "アクション",
+    url: "https://afoolhippo.github.io/game74/",
+    image: "./assets/images/games/game74.png",
+    rankingEnabled: true,
+    supabaseId: "game74"
   }
 ]);
 

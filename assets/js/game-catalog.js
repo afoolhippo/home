@@ -808,6 +808,17 @@ const GAME_CATALOG = Object.freeze([
     image: "./assets/images/games/game74.png",
     rankingEnabled: true,
     supabaseId: "game74"
+  },
+  {
+    no: 75,
+    title: "餃子ロック",
+    status: "公開済",
+    floor: "キッズゲーム",
+    genre: "タイミング",
+    url: "https://afoolhippo.github.io/game75/",
+    image: "./assets/images/games/game75.png",
+    rankingEnabled: true,
+    supabaseId: "game75"
   }
 ]);
 

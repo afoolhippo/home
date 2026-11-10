@@ -459,14 +459,14 @@ const GAME_CATALOG = Object.freeze([
   },
   {
     no: 42,
-    title: "てがきタイヤ",
-    status: "未公開",
+    title: "てがきタイヤグランプリ",
+    status: "公開済",
     floor: "実験場",
     genre: "クイズ・観察",
     url: "https://afoolhippo.github.io/game42/",
     image: "./assets/images/games/game42.png",
-    rankingEnabled: false,
-    supabaseId: null
+    rankingEnabled: true,
+    supabaseId: "game42"
   },
   {
     no: 43,

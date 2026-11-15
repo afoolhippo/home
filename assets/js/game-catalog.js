@@ -819,6 +819,17 @@ const GAME_CATALOG = Object.freeze([
     image: "./assets/images/games/game75.png",
     rankingEnabled: true,
     supabaseId: "game75"
+  },
+  {
+    no: 76,
+    title: "すり～あ～る！",
+    status: "公開済",
+    floor: "放課後ゲーム",
+    genre: "反射神経",
+    url: "https://afoolhippo.github.io/game76/",
+    image: "./assets/images/games/game76.png",
+    rankingEnabled: true,
+    supabaseId: "game76"
   }
 ]);
 

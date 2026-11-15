@@ -813,7 +813,7 @@ const GAME_CATALOG = Object.freeze([
     no: 75,
     title: "餃子ロック",
     status: "公開済",
-    floor: "キッズゲーム",
+    floor: "フードコート",
     genre: "タイミング",
     url: "https://afoolhippo.github.io/game75/",
     image: "./assets/images/games/game75.png",
